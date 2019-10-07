@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "52d59371-a94a-4b49-9fd4-7f647894cd3b",
+		"name": "Spotify_Library_endpoint_Part 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check user's saved albums",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+						"exec": [
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var response = JSON.parse(responseBody);",
+							"pm.test(\"Correct assertion. First album is present the second is not.\", function(){",
+							"   pm.expect(response[0]).to.eql(true);",
+							"   pm.expect(response[1]).to.eql(false);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums/contains?contains=&ids={{contained_album}},{{album_not_contained}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums",
+						"contains"
+					],
+					"query": [
+						{
+							"key": "contains",
+							"value": ""
+						},
+						{
+							"key": "ids",
+							"value": "{{contained_album}},{{album_not_contained}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check user's saved albums Negative_test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+						"exec": [
+							"pm.test(\"Response is ok, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"var json_response = JSON.parse(responseBody);",
+							"pm.test(\"Error message is contained. Bad ids\", function() {",
+							"    pm.expect(json_response.error.message).to.contain(\"Bad ID\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums/contains?contains=&ids={{incorrect_album_uris}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums",
+						"contains"
+					],
+					"query": [
+						{
+							"key": "contains",
+							"value": ""
+						},
+						{
+							"key": "ids",
+							"value": "{{incorrect_album_uris}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Albums fro Current User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+						"exec": [
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums?ids={{existing_album_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{existing_album_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Albums fro Current User Negative_Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+						"exec": [
+							"pm.test(\"Response is ok, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"var json_response = JSON.parse(responseBody);",
+							"pm.test(\"Error message is contained. Bad ids\", function() {",
+							"    pm.expect(json_response.error.message).to.contain(\"Bad ID\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums?ids={{incorrect_album_uris}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{incorrect_album_uris}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

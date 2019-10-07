@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "2c57a66c-8d25-40b3-a238-ac88de45e3b3",
+		"name": "Spotify_artists_endpoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Artist by artist ID_Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "025a728a-6a24-4f85-b547-c1a0e7b90b37",
+						"exec": [
+							"pm.test(\"Response is ok. Code 400\", function() {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"var resp = JSON.parse(responseBody)",
+							"pm.test(\"Invalid id is correctly shown in the error message.\", function (){",
+							"    pm.expect(resp.error.message).to.eql(\"invalid id\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/artists/{{incorrect_artist_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"artists",
+						"{{incorrect_artist_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an artist's related artists Positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+						"exec": [
+							"pm.test(\"Response is ok. Code 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/artists/{{artist_id}}/related-artists",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"artists",
+						"{{artist_id}}",
+						"related-artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an artist's related artists Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "025a728a-6a24-4f85-b547-c1a0e7b90b37",
+						"exec": [
+							"pm.test(\"Response is ok. Code 400\", function() {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"var resp = JSON.parse(responseBody)",
+							"pm.test(\"Invalid id is correctly shown in the error message.\", function (){",
+							"    pm.expect(resp.error.message).to.eql(\"invalid id\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/artists/{{incorrect_artist_id}}/related-artists",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"artists",
+						"{{incorrect_artist_id}}",
+						"related-artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Artist by artist ID_Positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+						"exec": [
+							"pm.test(\"Response is ok. Code 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/artists/{{artist_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"artists",
+						"{{artist_id}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

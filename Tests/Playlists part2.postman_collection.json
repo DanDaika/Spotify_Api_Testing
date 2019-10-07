@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "634006f3-14dc-49a7-94af-05d0ade0855e",
+		"name": "Playlists part2",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a playlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8ae27c1-72e0-4cf8-80ec-f5bbad9d7d21",
+						"exec": [
+							"pm.test(\"Playlist was created, status code 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"playlist_id\", jsonData.uri.slice(17,jsonData.uri.length));",
+							"",
+							"pm.test(\"The Playlist was created\", function () {",
+							"    pm.expect(jsonData.name).to.eql(\"The playlist\");",
+							"});",
+							"",
+							"//console.log(jsonData.uri.slice(17,jsonData.uri.length));",
+							"//console.log(jsonData);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d66d3bb4-6199-4e62-a178-823f90427c4e",
+						"exec": [
+							"console.log(\"Create a playlist and get it's id!\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"The playlist\",\r\n  \"description\": \"Test playlist created\",\r\n  \"public\": false\r\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/users/{{user_id}}/playlists/",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"{{user_id}}",
+						"playlists",
+						""
+					]
+				},
+				"description": "Get authentification TOKEN"
+			},
+			"response": []
+		},
+		{
+			"name": "Add tracks to a playlist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "52127f56-8f42-4a49-9580-8bbbccd29d1a",
+						"exec": [
+							"console.log(\"Ad tracks to the created playlist!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "feaff308-4723-4c0e-972c-60913ecf93f4",
+						"exec": [
+							"pm.test(\"Tracks added to playlist, status code 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('snapshot_id');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"uris\":[\"spotify:track:7z0JDE4w67HXt5lEWsU2Hj\",\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove tracks from a playlist",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f605cd27-6202-4a23-bc2d-a3d1aa7e24d2",
+						"exec": [
+							"console.log(\"Delete a track from the added ones to the created playlist!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b0f657e-95e3-4e63-946a-53f62f63ac99",
+						"exec": [
+							"pm.test(\"The tracks were deleted, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('snapshot_id');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"uris\":[\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}",
+						"tracks"
+					]
+				},
+				"description": "Delete a track adeed to the playlist using DELETE request"
+			},
+			"response": []
+		},
+		{
+			"name": "Change a playlists name and description",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9ca21365-daae-4e0d-b349-0fb396907128",
+						"exec": [
+							"console.log(\"Change the name and the description of the created playlist!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a1007d8-7122-4c70-be04-04958f04837f",
+						"exec": [
+							"pm.test(\"The name and description were changed, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"The changed playlist\",\r\n  \"description\": \"This playlist has a changed description\",\r\n  \"public\": false\r\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add tracks to a playlist negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "52127f56-8f42-4a49-9580-8bbbccd29d1a",
+						"exec": [
+							"console.log(\"Ad tracks to the created playlist!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "feaff308-4723-4c0e-972c-60913ecf93f4",
+						"exec": [
+							"pm.test(\"Tracks added to playlist, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('error');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"ris\":[\"spotify:track:7z0JDE4w67HXt5lEWsU2Hj\",\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove tracks from a playlist negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f605cd27-6202-4a23-bc2d-a3d1aa7e24d2",
+						"exec": [
+							"console.log(\"Delete a track from the added ones to the created playlist!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b0f657e-95e3-4e63-946a-53f62f63ac99",
+						"exec": [
+							"pm.test(\"The tracks were deleted, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('error');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"uris\":[\"spotify:trk:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+				},
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}",
+						"tracks"
+					]
+				},
+				"description": "Delete a track adeed to the playlist using DELETE request"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

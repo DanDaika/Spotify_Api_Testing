@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "69441c18-a254-4d37-9813-ca61a051533a",
+		"name": "Albums",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/albums/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an album",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "91a2c200-1e4c-4879-9a2e-32014b6e01d3",
+						"exec": [
+							"console.log('Get an Album!');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c91f618-5d9f-4e60-89d3-06eac5b82714",
+						"exec": [
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var response = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Album is correct\", function () {",
+							"    pm.expect(response.uri).to.eql(\"spotify:album:0O82niJ0NpcptYRxogeEZu\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON schema\", function() {",
+							"    var result = tv4.validateResult(response,JSON.parse(pm.variables.get(\"albumsGetAlbumSchema\")),false,true);",
+							"    //pm.expect(result.valid).to.be.true;",
+							"    console.log(result);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/albums/{{album_timberlake}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"albums",
+						"{{album_timberlake}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an album's tracks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b682b636-912f-4eda-acd7-1374f0ca9399",
+						"exec": [
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var response = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Album is correct\", function () {",
+							"    pm.expect(response.href).to.eql(\"https://api.spotify.com/v1/albums/2WT1pbYjLJciAR26yMebkH/tracks?offset=0&limit=20\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON schema\", function() {",
+							"    var result = tv4.validateResult(response,JSON.parse(pm.variables.get(\"albumsGetAnAlbumsTracks\")),false,true)",
+							"    pm.expect(result.valid).to.be.true",
+							"});",
+							"",
+							"",
+							"//console.log(response);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "149fcedc-4b23-4c38-8a2c-77396711c3e6",
+						"exec": [
+							"console.log('Get all the tracks for an Album!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/albums/{{album_pinkFloyd}}/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"albums",
+						"{{album_pinkFloyd}}",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an album negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "91a2c200-1e4c-4879-9a2e-32014b6e01d3",
+						"exec": [
+							"console.log('Get an Album with a wrong ID, error expected!');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c91f618-5d9f-4e60-89d3-06eac5b82714",
+						"exec": [
+							"pm.test(\"Invalid ID, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/albums/invalid",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"albums",
+						"invalid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an album's tracks Negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b682b636-912f-4eda-acd7-1374f0ca9399",
+						"exec": [
+							"pm.test(\"Invalid ID, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "149fcedc-4b23-4c38-8a2c-77396711c3e6",
+						"exec": [
+							"console.log('Get all the tracks for an Album with an invalid ID, error expected!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/albums/785968/tracks",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"albums",
+						"785968",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
