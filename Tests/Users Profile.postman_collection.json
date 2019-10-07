@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "542fc731-f03f-4ba4-b42d-6cb4d458fb48",
+		"name": "Users Profile",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/users-profile/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI="
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current user's profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+						"exec": [
+							"console.log(\"Get the current user's profile!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+						"exec": [
+							"pm.test(\"The current user's profile, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"The current user was shown!\", function () {",
+							"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"user_id\"));",
+							"});",
+							"",
+							"//console.log(pm.variables.get(\"user_id\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/me",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a user's profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+						"exec": [
+							"console.log(\"Get a user's profile!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+						"exec": [
+							"pm.test(\"The user's profile, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"The user was shown!\", function () {",
+							"    pm.expect(jsonData.id).to.eql(\"winterlord22\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/users/{{other_user}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"{{other_user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a user's profile negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+						"exec": [
+							"console.log(\"Get a user's profile!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+						"exec": [
+							"pm.test(\"The user's profile, status code 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"The user was not shown!\", function () {",
+							"    pm.expect(jsonData.error.message).to.eql(\"No token provided\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/users/{{other_user}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"users",
+						"{{other_user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current user's profile negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+						"exec": [
+							"console.log(\"Get the current user's profile!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+						"exec": [
+							"pm.test(\"The current user's profile, status code 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"The current user was not shown!\", function () {",
+							"    pm.expect(jsonData.error.message).to.eql(\"No token provided\");",
+							"});",
+							"",
+							"//console.log(jsonData.error.message);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/me",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

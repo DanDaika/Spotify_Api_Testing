@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "8caacafa-a894-4ce2-b88a-846a9c49c469",
+		"name": "Tracks",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/tracks/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI="
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get audio analysis for a track",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+						"exec": [
+							"console.log(\"Get the audio analysis for a track\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData.meta).to.have.property('analyzer_version');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/audio-analysis/{{track_bolywood}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"audio-analysis",
+						"{{track_bolywood}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get audio features for a track",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+						"exec": [
+							"console.log(\"Get the audio features for a track\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('danceability');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/audio-features/{{track_salutRock}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"audio-features",
+						"{{track_salutRock}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a track negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+						"exec": [
+							"console.log(\"Get an invalid track\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test('Property is present', function() {",
+							"  pm.expect(jsonData).to.have.property('error');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/tracks/invalid",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"tracks",
+						"invalid"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
