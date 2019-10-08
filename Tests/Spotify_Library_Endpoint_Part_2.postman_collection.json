@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "2603791f-a01c-4ada-84d5-e60b4f13c1bb",
+		"name": "Spotify_Library_Endpoint_Part_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save Tracks for User Positive test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87a42a1e-b3ca-4d6f-a433-7a1bdf8b86e9",
+						"exec": [
+							"pm.test(\"Response 200. Response ok.\", function(){",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"tracks"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{to_add_tracks}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Tracks for User Negative test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87a42a1e-b3ca-4d6f-a433-7a1bdf8b86e9",
+						"exec": [
+							"pm.test(\"Response 400. Response is correct.\", function(){",
+							"    pm.response.to.have.status(400)",
+							"})",
+							"var resp = JSON.parse(responseBody);",
+							"pm.test(\"Error message found in JSON response.\", function(){",
+							"    pm.expect(resp.error.message).to.eql(\"Bad ID\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks_negative}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"tracks"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{to_add_tracks_negative}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Albums for Current User Positive test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3322783-ca84-4b3a-b899-28f2b596881a",
+						"exec": [
+							"pm.test(\"Response 200. Response ok.\", function(){",
+							"    pm.response.to.have.status(200)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{save_album_ids}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Albums for Current Negative test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ae5edd5-382f-47df-b7f5-c228aada5313",
+						"exec": [
+							"pm.test(\"Response 400. Response is correct.\", function(){",
+							"    pm.response.to.have.status(400)",
+							"})",
+							"var resp = JSON.parse(responseBody);",
+							"pm.test(\"Error message found in JSON response.\", function(){",
+							"    pm.expect(resp.error.message).to.eql(\"Bad ID\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids_negative}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"albums"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "{{save_album_ids_negative}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User's Saved tracks",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{ac_token_var}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spotify.com/v1/me/tracks?limit=10",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"tracks"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
