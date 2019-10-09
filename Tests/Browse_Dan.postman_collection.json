@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "c055806c-6546-451c-b927-760e04e3616a",
+		"name": "Browse_Dan",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/browse/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI="
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a category",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4bb27a17-3319-4f2b-b19e-7ac7e7d2503f",
+						"exec": [
+							"console.log(\"Get a category: Party!\")"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2acdd7bd-225b-404c-a49f-667eede6bce1",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Category is correct\", function () {",
+							"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"category_id\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/browse/categories/{{category_id}}",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"browse",
+						"categories",
+						"{{category_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a category negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4bb27a17-3319-4f2b-b19e-7ac7e7d2503f",
+						"exec": [
+							"console.log(\"Get a category: Party!\")"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2acdd7bd-225b-404c-a49f-667eede6bce1",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Category is incorrect\", function () {",
+							"    pm.expect(jsonData.error.message).to.eql(\"Specified id doesn't exist\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/browse/categories/1234",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"browse",
+						"categories",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
