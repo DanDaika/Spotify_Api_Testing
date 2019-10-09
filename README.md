@@ -3,3 +3,5 @@ Test Spotify API endpoints, using POSTMAN.
 Modificare Readme
 
 Daika a fost aici.
+
+Si aici am fost.
