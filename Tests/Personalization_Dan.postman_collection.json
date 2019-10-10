@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "ec2ba081-0f65-4188-b594-c0a8d71d5583",
-		"name": "Personalization",
+		"_postman_id": "fae679ac-c2b7-47b9-b878-d836afc32f69",
+		"name": "Personalization_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/personalization/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},

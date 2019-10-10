@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "df018e53-12c7-40e5-9aef-e78a34c9ebe8",
-		"name": "Spotify_Playlist_endpoints_Part 1",
+		"_postman_id": "776544c4-b677-416e-ab9d-d678153ad919",
+		"name": "Spotify_Playlist_endpoints_Part 1_FAB",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -32,7 +32,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -97,7 +97,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -162,7 +162,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -239,7 +239,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{

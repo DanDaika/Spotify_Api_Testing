@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "542fc731-f03f-4ba4-b42d-6cb4d458fb48",
-		"name": "Users Profile",
+		"_postman_id": "09aaf1c0-8a75-4467-98cb-a927cfd1cd9f",
+		"name": "Users Profile_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/users-profile/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -217,14 +217,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_domain}}/v1/users/{{other_user}}",
+					"raw": "{{api_domain}}/v1/users/{{other_user_id}}",
 					"host": [
 						"{{api_domain}}"
 					],
 					"path": [
 						"v1",
 						"users",
-						"{{other_user}}"
+						"{{other_user_id}}"
 					]
 				}
 			},
@@ -286,14 +286,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_domain}}/v1/users/{{other_user}}",
+					"raw": "{{api_domain}}/v1/users/{{other_user_id}}",
 					"host": [
 						"{{api_domain}}"
 					],
 					"path": [
 						"v1",
 						"users",
-						"{{other_user}}"
+						"{{other_user_id}}"
 					]
 				}
 			},

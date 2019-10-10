@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c055806c-6546-451c-b927-760e04e3616a",
+		"_postman_id": "e2df25c2-05c6-473b-a51a-2153d6426143",
 		"name": "Browse_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/browse/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -115,7 +115,7 @@
 							"});",
 							"",
 							"pm.test(\"Category is correct\", function () {",
-							"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"category_id\"));",
+							"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"category_id_1\"));",
 							"});"
 						],
 						"type": "text/javascript"
@@ -146,7 +146,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_domain}}/v1/browse/categories/{{category_id}}",
+					"raw": "{{api_domain}}/v1/browse/categories/{{category_id_1}}",
 					"host": [
 						"{{api_domain}}"
 					],
@@ -154,7 +154,7 @@
 						"v1",
 						"browse",
 						"categories",
-						"{{category_id}}"
+						"{{category_id_1}}"
 					]
 				}
 			},

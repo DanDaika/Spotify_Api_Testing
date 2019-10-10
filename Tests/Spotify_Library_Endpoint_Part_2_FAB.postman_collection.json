@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2603791f-a01c-4ada-84d5-e60b4f13c1bb",
-		"name": "Spotify_Library_Endpoint_Part_2",
+		"_postman_id": "13abddf9-6b43-45c0-baf8-6fccf1c27832",
+		"name": "Spotify_Library_Endpoint_Part_2_FAB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -27,7 +27,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -93,7 +93,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -155,7 +155,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -221,7 +221,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -269,7 +269,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{

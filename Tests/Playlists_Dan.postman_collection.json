@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "543aebb4-862d-44c4-9a85-353849c59c6f",
+		"_postman_id": "bb2cb811-0abc-47f1-a471-01bf09ceea7d",
 		"name": "Playlists_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist-cover/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
