@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "ddbd96a9-ddf8-4cb5-b307-c2ead5b4be30",
-		"name": "Follow",
+		"_postman_id": "d46821e2-a251-41ec-8174-208ddd435759",
+		"name": "Follow_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/follow/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -150,7 +150,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_pinkFloyd}},{{artist_timberlake}}",
+					"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_id_1}},{{artist_id_2}}",
 					"host": [
 						"{{api_domain}}"
 					],
@@ -166,7 +166,7 @@
 						},
 						{
 							"key": "ids",
-							"value": "{{artist_pinkFloyd}},{{artist_timberlake}}"
+							"value": "{{artist_id_1}},{{artist_id_2}}"
 						}
 					]
 				}
@@ -239,7 +239,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api_domain}}/v1/me/following/contains?type=user&ids={{other_user}}",
+					"raw": "{{api_domain}}/v1/me/following/contains?type=user&ids={{other_user_id}}",
 					"host": [
 						"{{api_domain}}"
 					],
@@ -256,7 +256,7 @@
 						},
 						{
 							"key": "ids",
-							"value": "{{other_user}}"
+							"value": "{{other_user_id}}"
 						}
 					]
 				}
@@ -313,7 +313,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_timberlake}}",
+					"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_id_2}}",
 					"host": [
 						"{{api_domain}}"
 					],
@@ -329,7 +329,7 @@
 						},
 						{
 							"key": "ids",
-							"value": "{{artist_timberlake}}"
+							"value": "{{artist_id_2}}"
 						}
 					]
 				}

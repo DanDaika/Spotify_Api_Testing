@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a6f6f226-6754-4ef6-bfd3-0bf7f0865626",
+		"_postman_id": "78ddeacb-235a-4ec6-a03f-1376c5ab0d9e",
 		"name": "Player_Dan",
 		"description": "https://developer.spotify.com/documentation/web-api/reference/player/set-repeat-mode-on-users-playback/",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"

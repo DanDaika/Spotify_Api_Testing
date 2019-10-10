@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1d5f1788-7964-4531-a6e5-5172e4551067",
+		"_postman_id": "71340576-bc77-431b-95ab-5eed4b6fb518",
 		"name": "Get the CODE, the TOKEN and the REFRESH TOKEN",
 		"description": "Get the CODE needed to generate the TOKEN and the REFRESH TOKEN in order to be able to make requests to the api domain.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"

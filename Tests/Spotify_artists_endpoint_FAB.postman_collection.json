@@ -1,10 +1,82 @@
 {
 	"info": {
-		"_postman_id": "2c57a66c-8d25-40b3-a238-ac88de45e3b3",
-		"name": "Spotify_artists_endpoint",
+		"_postman_id": "01ee3f87-66a1-4fad-bf38-9be4d9568864",
+		"name": "Spotify_artists_endpoint_FAB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Refresh_token Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Artist by artist ID_Negative",
 			"event": [
@@ -31,7 +103,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -95,7 +167,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -163,7 +235,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -228,7 +300,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "{{ac_token_var}}",
+							"value": "{{token}}",
 							"type": "string"
 						},
 						{
@@ -253,7 +325,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://api.spotify.com/v1/artists/{{artist_id}}",
+					"raw": "https://api.spotify.com/v1/artists/{{artist_id}}?=",
 					"protocol": "https",
 					"host": [
 						"api",
