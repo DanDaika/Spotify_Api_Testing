@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "543aebb4-862d-44c4-9a85-353849c59c6f",
+		"name": "Playlists_Dan",
+		"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist-cover/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Refresh_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+						"exec": [
+							"console.log('Refresh the TOKEN!');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic OWM3YWUxMWZjZWM3NDZjYTlkNDFmZDg4MGFlYTFmZjA6OTUwNGNmYzUwM2ZkNDA2NWIxNGFiMzBiMmNlZjE0NjI=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "secret_id",
+							"value": "{{client_secret}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{accounts_domain}}/api/token",
+					"host": [
+						"{{accounts_domain}}"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a playlist's cover image",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7cef47ef-959a-4f68-aa75-8464a43ad5b1",
+						"exec": [
+							"console.log(\"Get a playlist's cover image!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d35dfdc8-d190-4be5-8f35-68edf553e0a6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Image is available!\", function () {",
+							"    pm.expect(jsonData[0]).to.have.property(\"height\");",
+							"    pm.expect(jsonData[0]).to.have.property(\"width\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/images",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"{{playlist_id}}",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a playlist's cover image negative",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7cef47ef-959a-4f68-aa75-8464a43ad5b1",
+						"exec": [
+							"console.log(\"Get a playlist's cover image, with wrong playlist id!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d35dfdc8-d190-4be5-8f35-68edf553e0a6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Response is ok, status code 502\", function () {",
+							"    pm.response.to.have.status(502);",
+							"});",
+							"",
+							"pm.test(\"Image is available!\", function () {",
+							"    pm.expect(jsonData.error.message).to.eql(\"Bad gateway.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_domain}}/v1/playlists/wrong/images",
+					"host": [
+						"{{api_domain}}"
+					],
+					"path": [
+						"v1",
+						"playlists",
+						"wrong",
+						"images"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
