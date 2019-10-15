@@ -1,6 +1,6 @@
 # Spotify_Api_Testing
 Test Spotify API endpoints, using POSTMAN.
-POSTMAN v7.9.0
+POSTMAN for WINDOWS v7.9.0
 ------------------------------
 Version 1.0
 	- New environment variables template has been created
@@ -14,6 +14,7 @@ and refresher token.
 1. Create a new Spotify User account at the following link: https://www.spotify.com
 2. Using the created account login on the Dashboard : https://developer.spotify.com/dashboard
 3. Create a client ID in order to get your Client ID and Client Secret
+4. Select the new created application and select 'EDIT SETTINGS'. Here complete the 'Redirect URIs' with: https://www.getpostman.com/oauth2/callback
 
 SETUP TO OBTAIN THE CODE
 @Without POSTMAN
@@ -69,36 +70,37 @@ NOTE: The TOKEN is valid for only one hour. After one hour a new TOKEN needs to 
 NOTE: The REFRESH_TOKEN shouldn't expire. But if by any chance it doesn't work any more, just get a new CODE and generate yourself a new TOKEN and REFRESH_TOKEN
 ------------------------------
 Explenation of environment variables
-	+ "user_id" 			- a valid Spotify user ID. Initially it would be recomended that you give your own user ID
-	+ "other_user_id" 		- any other valid Spotify user ID
-	+ "client_id"  			- the Client ID obtained when creating a new Client ID
-	+ "client_secret"		- the Client Secret obtained when creating a new Client ID
-	+ "state" 				- country
-	+ "accounts_domain"		- Spotify accounts endpoint domain (https://accounts.spotify.com)
-	+ "api_domain" 			- Spotify API endpoint domain (https://api.spotify.com)
-	+ "redirect_uri"		- 
-	+ "scopes"
-	+ "code"
-	+ "token"
-	+ "refresh_token"
-	+ "artist_id_1"
-	+ "artist_id_2"
-	+ "album_id_1"
-	+ "album_id_2"
-	+ "track_id_1"
-	+ "track_id_2"
-	+ "playlist_id"
-	+ "contained_album"
-	+ "album_not_contained"
-	+ "incorrect_album_uris"
-	+ "existing_album_id"
-	+ "incorrect_artist_id"
-	+ "search_item"
-	+ "search_type"
-	+ "albumsGetAlbumSchema"
-	+ "falseSchema"
-	+ "albumsGetAnAlbumsTracks"
-	+ "category_id_1"	
+	+ "user_id" 						- a valid Spotify user ID. Initially it would be recomended that you give your own user ID
+	+ "other_user_id" 					- any other valid Spotify user ID
+	+ "client_id"  						- the Client ID obtained when creating a new Client ID
+	+ "client_secret"					- the Client Secret obtained when creating a new Client ID
+	+ "state" 							- country
+	+ "accounts_domain"					- Spotify accounts endpoint domain (https://accounts.spotify.com)
+	+ "api_domain" 						- Spotify API endpoint domain (https://api.spotify.com)
+	+ "redirect_uri"					- a redirect uri to be able to get the CODE
+	+ "scopes"							- areas where the user grants access
+	+ "code"							- the CODE needed to get the TOKEN and REFRESH_TOKEN
+	+ "token"							- the TOKEN needed to interact with the Spotify API endpoint
+	+ "refresh_token"					- the REFRESH_TOKEN needed to refresh the TOKEN every hour, when it expires
+	+ "artist_id_1"						- Spotify artist id, can be any valid artist id
+	+ "artist_id_2"						- Spotify artist id, can be any valid artist id
+	+ "album_id_1"						- Spotify album id, can be any valid album id
+	+ "album_id_2"						- Spotify album id, can be any valid album id
+	+ "track_id_1"						- Spotify track id, can be any valid track id
+	+ "track_id_2"						- Spotify track id, can be any valid track id
+	+ "playlist_id"						- Spotify playlist id, can be any valid playlist id 
+	+ "contained_album"					- Spotify album id, can be any valid album id
+	+ "album_not_contained"				- can be any invalid album id
+	+ "incorrect_album_uris"			- wrong uris for an album id
+	+ "existing_album_id"				- Spotify album id, can be any valid album id
+	+ "incorrect_artist_id"				- wrong artist id
+	+ "search_item"						- the searched item
+	+ "search_type"						- the type of the searched item
+	+ "albumsGetAlbumSchema"			- JSON schema
+	+ "falseSchema"						- JSON schema
+	+ "albumsGetAnAlbumsTracks" 		- JSON schema
+	+ "json_schema_for_new_release" 	- JSON schema
+	+ "category_id_1"					- the category in Spotify
 ------------------------------
 SETUP TO RUN TESTS
 1. From Tests folder get the desired POSTMAN collection
@@ -106,3 +108,7 @@ SETUP TO RUN TESTS
 If you have missing variables please read the SETUP steps above.
 3. Import the collection you want to test
 4. Run the collection you want to test.
+5. When using the POSTMAN Runner make sure you have the following settings:
+		- Select the correct environment
+		- 'Keep variables values' checked
+		- 'Save cookies after collection run' checked 
