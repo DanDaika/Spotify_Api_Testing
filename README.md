@@ -69,7 +69,7 @@ Once you obtained the CODE, use it to send a POST request in POSTMAN. This way y
 NOTE: The TOKEN is valid for only one hour. After one hour a new TOKEN needs to be generated with the help of the REFRESH_TOKEN
 NOTE: The REFRESH_TOKEN shouldn't expire. But if by any chance it doesn't work any more, just get a new CODE and generate yourself a new TOKEN and REFRESH_TOKEN
 ------------------------------
-Explenation of environment variables
+Explanation of environment variables
 	+ "user_id" 						- a valid Spotify user ID. Initially it would be recomended that you give your own user ID
 	+ "other_user_id" 					- any other valid Spotify user ID
 	+ "client_id"  						- the Client ID obtained when creating a new Client ID
