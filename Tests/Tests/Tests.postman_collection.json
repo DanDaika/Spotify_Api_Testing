@@ -1,0 +1,6135 @@
+{
+	"info": {
+		"_postman_id": "bf731b59-3840-41fa-a29b-67303fb155e7",
+		"name": "Tests",
+		"description": "Here are the created tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Albums_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an album",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "91a2c200-1e4c-4879-9a2e-32014b6e01d3",
+								"exec": [
+									"console.log('Get an Album!');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c91f618-5d9f-4e60-89d3-06eac5b82714",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Album is correct\", function () {",
+									"    pm.expect(response.uri.slice(14,response.uri.length)).to.eql(pm.variables.get(\"album_id_2\"));",
+									"});",
+									"",
+									"pm.test(\"Validate JSON schema\", function() {",
+									"    var result = tv4.validateResult(response,JSON.parse(pm.variables.get(\"albumsGetAlbumSchema\")),false,true);",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/albums/{{album_id_2}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"{{album_id_2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an album's tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b682b636-912f-4eda-acd7-1374f0ca9399",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Album is correct\", function () {",
+									"    pm.expect(response.href.slice((response.href.indexOf(\"albums\")+7),(response.href.lastIndexOf(\"/\")))).to.eql(pm.variables.get(\"album_id_1\"));",
+									"});",
+									"",
+									"pm.test(\"Validate JSON schema\", function() {",
+									"    var result = tv4.validateResult(response,JSON.parse(pm.variables.get(\"albumsGetAnAlbumsTracks\")),false,true);",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "149fcedc-4b23-4c38-8a2c-77396711c3e6",
+								"exec": [
+									"console.log('Get all the tracks for an Album!');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/albums/{{album_id_1}}/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"{{album_id_1}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an album negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "91a2c200-1e4c-4879-9a2e-32014b6e01d3",
+								"exec": [
+									"console.log('Get an Album with a wrong ID, error expected!');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c91f618-5d9f-4e60-89d3-06eac5b82714",
+								"exec": [
+									"pm.test(\"Invalid ID, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/albums/invalid",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"invalid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an album's tracks Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b682b636-912f-4eda-acd7-1374f0ca9399",
+								"exec": [
+									"pm.test(\"Invalid ID, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "149fcedc-4b23-4c38-8a2c-77396711c3e6",
+								"exec": [
+									"console.log('Get all the tracks for an Album with an invalid ID, error expected!');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/albums/785968/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"785968",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/albums/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Artists_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Artist's Albums",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "589d58b4-ddde-46cd-8d94-ed2bf198b1a8",
+								"exec": [
+									"console.log(\"Get the albums for a specific artist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9dc60b6-5e6c-4542-9990-f61403d1f513",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var artist = (jsonData.href.slice((jsonData.href.indexOf(\"artists\")+8),jsonData.length)).slice(0,(jsonData.href.slice((jsonData.href.indexOf(\"artists\")+8),jsonData.length)).indexOf(\"/\"));",
+									"",
+									"pm.test(\"Artist is correct\", function () {",
+									"    pm.expect(artist).to.eql(pm.variables.get(\"artist_id_2\"));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/artists/{{artist_id_2}}/albums",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"{{artist_id_2}}",
+								"albums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Artist's Albums Negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "589d58b4-ddde-46cd-8d94-ed2bf198b1a8",
+								"exec": [
+									"console.log(\"Get the albums for a specific artist, with invalid artist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9dc60b6-5e6c-4542-9990-f61403d1f513",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Artist is incorect\", function () {",
+									"    pm.expect(jsonData.error.message).to.eql(\"invalid id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/artists/1234abc/albums",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"1234abc",
+								"albums"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/artists/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Browse_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a category",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4bb27a17-3319-4f2b-b19e-7ac7e7d2503f",
+								"exec": [
+									"console.log(\"Get a category: Party!\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2acdd7bd-225b-404c-a49f-667eede6bce1",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Category is correct\", function () {",
+									"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"category_id_1\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/browse/categories/{{category_id_1}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories",
+								"{{category_id_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a category negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4bb27a17-3319-4f2b-b19e-7ac7e7d2503f",
+								"exec": [
+									"console.log(\"Get a category: Party!\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2acdd7bd-225b-404c-a49f-667eede6bce1",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Category is incorrect\", function () {",
+									"    pm.expect(jsonData.error.message).to.eql(\"Specified id doesn't exist\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/browse/categories/1234",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/browse/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Follow_part2_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the user's followed artists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3d1a32f7-4840-45d2-8dee-a871922f622e",
+								"exec": [
+									"console.log(\"Get the user's followed artists!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d32abc3e-4796-4845-937b-45ad4ce6393c",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData.artists).to.have.property('items');",
+									"  pm.expect(jsonData.artists).to.have.property('total');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following?type=artist",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "artist"
+								}
+							]
+						},
+						"description": "https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get the user's followed artists negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3d1a32f7-4840-45d2-8dee-a871922f622e",
+								"exec": [
+									"console.log(\"Get the user's followed artists!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d32abc3e-4796-4845-937b-45ad4ce6393c",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData.error.message).to.eql('No type given');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following"
+							]
+						},
+						"description": "https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/"
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/follow/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Follow_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow artists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5a380af0-613a-493d-b955-bee337145b7c",
+								"exec": [
+									"console.log(\"Follow artists and a user\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "07edac32-a4d3-4d36-a1ce-d5f90a2444c5",
+								"exec": [
+									"pm.test(\"Response is ok, status code 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_id_1}},{{artist_id_2}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "artist"
+								},
+								{
+									"key": "ids",
+									"value": "{{artist_id_1}},{{artist_id_2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if current user follows users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5175feaf-b723-45a1-a424-3cd5d9576a5e",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData[0]).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"Validate JSON schema\", function() {",
+									"    var result = tv4.validateResult(jsonData,JSON.parse(pm.variables.get(\"falseSchema\")),false,true);",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ce2b630-a842-45ed-838b-d6409e553106",
+								"exec": [
+									"console.log(\"Check if current user is following anyone\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following/contains?type=user&ids={{other_user_id}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following",
+								"contains"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "user"
+								},
+								{
+									"key": "ids",
+									"value": "{{other_user_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfolow an artist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "94653cbc-7d25-4a99-9f9f-58d600069c17",
+								"exec": [
+									"console.log(\"Unfollow an artist\")"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "be9c23ec-93c0-4aab-b621-e32575a3c5a2",
+								"exec": [
+									"pm.test(\"Response is ok, status code 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following?type=artist&ids={{artist_id_2}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "artist"
+								},
+								{
+									"key": "ids",
+									"value": "{{artist_id_2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow artists negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5a380af0-613a-493d-b955-bee337145b7c",
+								"exec": [
+									"console.log(\"Follow artists and a user\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "07edac32-a4d3-4d36-a1ce-d5f90a2444c5",
+								"exec": [
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Invalid aritist id!\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"error\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/following?type=artist&ids=nvalidi",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"following"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "artist"
+								},
+								{
+									"key": "ids",
+									"value": "nvalidi"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/follow/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Personalization_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get top artists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b09d6a27-6bc4-425c-af09-95e841b9e9eb",
+								"exec": [
+									"console.log(\"Get the top artists for the current user\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "076a7f47-d1bf-4c15-96d5-cfd583c963c6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('items');",
+									"  pm.expect(jsonData).to.have.property('total');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/top/artists",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"top",
+								"artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get top tracks",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b09d6a27-6bc4-425c-af09-95e841b9e9eb",
+								"exec": [
+									"console.log(\"Get the top tracks for the current user\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "076a7f47-d1bf-4c15-96d5-cfd583c963c6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('items');",
+									"  pm.expect(jsonData).to.have.property('total');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/top/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"top",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get top negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b09d6a27-6bc4-425c-af09-95e841b9e9eb",
+								"exec": [
+									"console.log(\"Get the top for the current user, withouth tracks or artists parameters\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "076a7f47-d1bf-4c15-96d5-cfd583c963c6",
+								"exec": [
+									"pm.test(\"Response is ok, status code 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/top",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"top"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/personalization/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Player_Dan",
+			"item": [
+				{
+					"name": "Retested issue 1328",
+					"item": [
+						{
+							"name": "Refresh_token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+											"",
+											"pm.test(\"Response is ok, status code 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+										"exec": [
+											"console.log('Refresh the TOKEN!');",
+											"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{base64_Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "secret_id",
+											"value": "{{client_secret}}",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{accounts_domain}}/api/token",
+									"host": [
+										"{{accounts_domain}}"
+									],
+									"path": [
+										"api",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get recent played tracks",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c201701a-dc1e-4fc2-91ae-3e4f14e36159",
+										"exec": [
+											"console.log(\"Get the recent played tracks\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "abf7b2bc-1f67-4334-a012-a0f47d46a45c",
+										"exec": [
+											"pm.test(\"Response is ok, status code 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{token}}",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_domain}}/v1/me/player/recently-played",
+									"host": [
+										"{{api_domain}}"
+									],
+									"path": [
+										"v1",
+										"me",
+										"player",
+										"recently-played"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "https://github.com/spotify/web-api/issues/1328",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Set repeat mode on user's playback",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a4b43a09-8dc3-4fe6-af43-db92c3ae6559",
+								"exec": [
+									"console.log(\"Set repeat mode on user's playback!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c286719-e7f3-444f-a063-37697c16b896",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Premium is needed\", function () {",
+									"    pm.expect(jsonData.error.reason).to.eql(\"PREMIUM_REQUIRED\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/player/repeat",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"player",
+								"repeat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set repeat mode on user's playback negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a4b43a09-8dc3-4fe6-af43-db92c3ae6559",
+								"exec": [
+									"console.log(\"Set repeat mode on user's playback!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c286719-e7f3-444f-a063-37697c16b896",
+								"exec": [
+									"pm.test(\"Response is ok, status code 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/player/123",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"player",
+								"123"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/player/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Playlists_part2_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a playlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8ae27c1-72e0-4cf8-80ec-f5bbad9d7d21",
+								"exec": [
+									"pm.test(\"Playlist was created, status code 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"playlist_id\", jsonData.uri.slice(17,jsonData.uri.length));",
+									"",
+									"pm.test(\"The Playlist was created\", function () {",
+									"    pm.expect(jsonData.name).to.eql(\"The playlist\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d66d3bb4-6199-4e62-a178-823f90427c4e",
+								"exec": [
+									"console.log(\"Create a playlist and get it's id!\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"The playlist\",\r\n  \"description\": \"Test playlist created\",\r\n  \"public\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/users/{{user_id}}/playlists/",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{{user_id}}",
+								"playlists",
+								""
+							]
+						},
+						"description": "Get authentification TOKEN"
+					},
+					"response": []
+				},
+				{
+					"name": "Add tracks to a playlist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52127f56-8f42-4a49-9580-8bbbccd29d1a",
+								"exec": [
+									"console.log(\"Ad tracks to the created playlist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "feaff308-4723-4c0e-972c-60913ecf93f4",
+								"exec": [
+									"pm.test(\"Tracks added to playlist, status code 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('snapshot_id');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"uris\":[\"spotify:track:7z0JDE4w67HXt5lEWsU2Hj\",\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove tracks from a playlist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f605cd27-6202-4a23-bc2d-a3d1aa7e24d2",
+								"exec": [
+									"console.log(\"Delete a track from the added ones to the created playlist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b0f657e-95e3-4e63-946a-53f62f63ac99",
+								"exec": [
+									"pm.test(\"The tracks were deleted, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('snapshot_id');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"uris\":[\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						},
+						"description": "Delete a track adeed to the playlist using DELETE request"
+					},
+					"response": []
+				},
+				{
+					"name": "Change a playlists name and description",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9ca21365-daae-4e0d-b349-0fb396907128",
+								"exec": [
+									"console.log(\"Change the name and the description of the created playlist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a1007d8-7122-4c70-be04-04958f04837f",
+								"exec": [
+									"pm.test(\"The name and description were changed, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"The changed playlist\",\r\n  \"description\": \"This playlist has a changed description\",\r\n  \"public\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add tracks to a playlist negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52127f56-8f42-4a49-9580-8bbbccd29d1a",
+								"exec": [
+									"console.log(\"Ad tracks to the created playlist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "feaff308-4723-4c0e-972c-60913ecf93f4",
+								"exec": [
+									"pm.test(\"Tracks added to playlist, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('error');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"ris\":[\"spotify:track:7z0JDE4w67HXt5lEWsU2Hj\",\"spotify:track:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove tracks from a playlist negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f605cd27-6202-4a23-bc2d-a3d1aa7e24d2",
+								"exec": [
+									"console.log(\"Delete a track from the added ones to the created playlist!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b0f657e-95e3-4e63-946a-53f62f63ac99",
+								"exec": [
+									"pm.test(\"The tracks were deleted, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('error');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"uris\":[\"spotify:trk:79MOydAvZYm8nyyzd6fiVi\"]\n}"
+						},
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/tracks",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						},
+						"description": "Delete a track adeed to the playlist using DELETE request"
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Playlists_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a playlist's cover image",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7cef47ef-959a-4f68-aa75-8464a43ad5b1",
+								"exec": [
+									"console.log(\"Get a playlist's cover image!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d35dfdc8-d190-4be5-8f35-68edf553e0a6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Image is available!\", function () {",
+									"    pm.expect(jsonData[0]).to.have.property(\"height\");",
+									"    pm.expect(jsonData[0]).to.have.property(\"width\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/{{playlist_id}}/images",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a playlist's cover image negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7cef47ef-959a-4f68-aa75-8464a43ad5b1",
+								"exec": [
+									"console.log(\"Get a playlist's cover image, with wrong playlist id!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d35dfdc8-d190-4be5-8f35-68edf553e0a6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 502\", function () {",
+									"    pm.response.to.have.status(502);",
+									"});",
+									"",
+									"pm.test(\"Image is available!\", function () {",
+									"    pm.expect(jsonData.error.message).to.eql(\"Bad gateway.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/playlists/wrong/images",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"wrong",
+								"images"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Artists_endpoint_Fabian",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Artist by artist ID_Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "025a728a-6a24-4f85-b547-c1a0e7b90b37",
+								"exec": [
+									"pm.test(\"Response is ok. Code 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Invalid id is correctly shown in the error message.\", function (){",
+									"    pm.expect(resp.error.message).to.eql(\"invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/{{incorrect_artist_id}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"{{incorrect_artist_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an artist's related artists Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+								"exec": [
+									"pm.test(\"Response is ok. Code 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/{{artist_id_1}}/related-artists",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"{{artist_id_1}}",
+								"related-artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an artist's related artists Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "025a728a-6a24-4f85-b547-c1a0e7b90b37",
+								"exec": [
+									"pm.test(\"Response is ok. Code 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Invalid id is correctly shown in the error message.\", function (){",
+									"    pm.expect(resp.error.message).to.eql(\"invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/{{incorrect_artist_id}}/related-artists",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"{{incorrect_artist_id}}",
+								"related-artists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Artist by artist ID_Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+								"exec": [
+									"pm.test(\"Response is ok. Code 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/{{artist_id_1}}?=",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"{{artist_id_1}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/artists/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Browse_endpoint_Fabian",
+			"item": [
+				{
+					"name": "Retest_issue_1354",
+					"item": [
+						{
+							"name": "Refresh_token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+											"",
+											"pm.test(\"Response is ok, status code 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+										"exec": [
+											"console.log('Refresh the TOKEN!');",
+											"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic {{base64_Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "secret_id",
+											"value": "{{client_secret}}",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{accounts_domain}}/api/token",
+									"host": [
+										"{{accounts_domain}}"
+									],
+									"path": [
+										"api",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get_Recomendations_Retesting",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+										"exec": [
+											"pm.test(\"Response is ok, status code 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{token}}",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.spotify.com/v1/recommendations?limit=100&seed_artists=7fWgqc4HJi3pcHhK8hKg2p&market=US",
+									"protocol": "https",
+									"host": [
+										"api",
+										"spotify",
+										"com"
+									],
+									"path": [
+										"v1",
+										"recommendations"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "seed_artists",
+											"value": "7fWgqc4HJi3pcHhK8hKg2p"
+										},
+										{
+											"key": "market",
+											"value": "US"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "https://github.com/spotify/web-api/issues/1354",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Get a list of new releases_Positive_BVA_50_limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var json_sch ={",
+									"  \"definitions\": {},",
+									"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+									"  \"$id\": \"http://example.com/root.json\",",
+									"  \"type\": \"object\",",
+									"  \"title\": \"The Root Schema\",",
+									"  \"required\": [",
+									"    \"categories\"",
+									"  ],",
+									"  \"properties\": {",
+									"    \"categories\": {",
+									"      \"$id\": \"#/properties/categories\",",
+									"      \"type\": \"object\",",
+									"      \"title\": \"The Categories Schema\",",
+									"      \"required\": [",
+									"        \"href\",",
+									"        \"items\",",
+									"        \"limit\",",
+									"        \"next\",",
+									"        \"offset\",",
+									"        \"previous\",",
+									"        \"total\"",
+									"      ],",
+									"      \"properties\": {",
+									"        \"href\": {",
+									"          \"$id\": \"#/properties/categories/properties/href\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Href Schema\",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"https://api.spotify.com/v1/browse/categories?country=RO&offset=0&limit=50\"",
+									"          ],",
+									"          \"pattern\": \"^(.*)$\"",
+									"        },",
+									"        \"items\": {",
+									"          \"$id\": \"#/properties/categories/properties/items\",",
+									"          \"type\": \"array\",",
+									"          \"title\": \"The Items Schema\",",
+									"          \"items\": {",
+									"            \"$id\": \"#/properties/categories/properties/items/items\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The Items Schema\",",
+									"            \"required\": [",
+									"              \"href\",",
+									"              \"icons\",",
+									"              \"id\",",
+									"              \"name\"",
+									"            ],",
+									"            \"properties\": {",
+									"              \"href\": {",
+									"                \"$id\": \"#/properties/categories/properties/items/items/properties/href\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Href Schema\",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"https://api.spotify.com/v1/browse/categories/toplists\"",
+									"                ],",
+									"                \"pattern\": \"^(.*)$\"",
+									"              },",
+									"              \"icons\": {",
+									"                \"$id\": \"#/properties/categories/properties/items/items/properties/icons\",",
+									"                \"type\": \"array\",",
+									"                \"title\": \"The Icons Schema\",",
+									"                \"items\": {",
+									"                  \"$id\": \"#/properties/categories/properties/items/items/properties/icons/items\",",
+									"                  \"type\": \"object\",",
+									"                  \"title\": \"The Items Schema\",",
+									"                  \"required\": [",
+									"                    \"height\",",
+									"                    \"url\",",
+									"                    \"width\"",
+									"                  ],",
+									"                  \"properties\": {",
+									"                    \"height\": {",
+									"                      \"$id\": \"#/properties/categories/properties/items/items/properties/icons/items/properties/height\",",
+									"                      \"type\": \"integer\",",
+									"                      \"title\": \"The Height Schema\",",
+									"                      \"default\": 0,",
+									"                      \"examples\": [",
+									"                        275",
+									"                      ]",
+									"                    },",
+									"                    \"url\": {",
+									"                      \"$id\": \"#/properties/categories/properties/items/items/properties/icons/items/properties/url\",",
+									"                      \"type\": \"string\",",
+									"                      \"title\": \"The Url Schema\",",
+									"                      \"default\": \"\",",
+									"                      \"examples\": [",
+									"                        \"https://t.scdn.co/media/derived/toplists_11160599e6a04ac5d6f2757f5511778f_0_0_275_275.jpg\"",
+									"                      ],",
+									"                      \"pattern\": \"^(.*)$\"",
+									"                    },",
+									"                    \"width\": {",
+									"                      \"$id\": \"#/properties/categories/properties/items/items/properties/icons/items/properties/width\",",
+									"                      \"type\": \"integer\",",
+									"                      \"title\": \"The Width Schema\",",
+									"                      \"default\": 0,",
+									"                      \"examples\": [",
+									"                        275",
+									"                      ]",
+									"                    }",
+									"                  }",
+									"                }",
+									"              },",
+									"              \"id\": {",
+									"                \"$id\": \"#/properties/categories/properties/items/items/properties/id\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Id Schema\",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"toplists\"",
+									"                ],",
+									"                \"pattern\": \"^(.*)$\"",
+									"              },",
+									"              \"name\": {",
+									"                \"$id\": \"#/properties/categories/properties/items/items/properties/name\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Name Schema\",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Top Lists\"",
+									"                ],",
+									"                \"pattern\": \"^(.*)$\"",
+									"              }",
+									"            }",
+									"          }",
+									"        },",
+									"        \"limit\": {",
+									"          \"$id\": \"#/properties/categories/properties/limit\",",
+									"          \"type\": \"integer\",",
+									"          \"title\": \"The Limit Schema\",",
+									"          \"default\": 0,",
+									"          \"examples\": [",
+									"            50",
+									"          ]",
+									"        },",
+									"        \"next\": {",
+									"          \"$id\": \"#/properties/categories/properties/next\",",
+									"          \"type\": \"null\",",
+									"          \"title\": \"The Next Schema\",",
+									"          \"default\": null,",
+									"          \"examples\": [",
+									"            null",
+									"          ]",
+									"        },",
+									"        \"offset\": {",
+									"          \"$id\": \"#/properties/categories/properties/offset\",",
+									"          \"type\": \"integer\",",
+									"          \"title\": \"The Offset Schema\",",
+									"          \"default\": 0,",
+									"          \"examples\": [",
+									"            0",
+									"          ]",
+									"        },",
+									"        \"previous\": {",
+									"          \"$id\": \"#/properties/categories/properties/previous\",",
+									"          \"type\": \"null\",",
+									"          \"title\": \"The Previous Schema\",",
+									"          \"default\": null,",
+									"          \"examples\": [",
+									"            null",
+									"          ]",
+									"        },",
+									"        \"total\": {",
+									"          \"$id\": \"#/properties/categories/properties/total\",",
+									"          \"type\": \"integer\",",
+									"          \"title\": \"The Total Schema\",",
+									"          \"default\": 0,",
+									"          \"examples\": [",
+									"            35",
+									"          ]",
+									"        }",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"postman.setEnvironmentVariable(\"json_schema_for_new_release\",json_sch);",
+									"var resp = JSON.parse(responseBody);",
+									"var valid = tv4.validateResult(resp,pm.variables.get(\"json_schema_for_new_release\"),false,true);",
+									"pm.test(\"The schema is valid.\", function(){",
+									"        pm.expect(valid.valid).to.be.true;",
+									"    }",
+									");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/browse/categories?country=RO&limit=50",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "RO"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of new releases_Negative_BVA_51_limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp_body=JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response URL correctly throws the error\", function() {",
+									"    pm.expect(resp_body.error.message).to.eql(\"Invalid limit\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/browse/categories?country=RO&limit=51",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "RO"
+								},
+								{
+									"key": "limit",
+									"value": "51"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of categories_Positive_BVA_50_limit Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/browse/categories?country=RO&locale=ro_EN&limit=50",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "RO"
+								},
+								{
+									"key": "locale",
+									"value": "ro_EN"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a list of categories Negative-BVA_Above_50_Limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp_body=JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response URL correctly throws the error\", function() {",
+									"    pm.expect(resp_body.error.message).to.eql(\"Invalid limit\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/browse/categories?country=RO&locale=ro_EN&limit=51",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"browse",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "RO"
+								},
+								{
+									"key": "locale",
+									"value": "ro_EN"
+								},
+								{
+									"key": "limit",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/browse/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Library_endpoint_part1_Fabian",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save an album for the current user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4d0fa19-d900-463b-9ee6-9394885a2ad0",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me/albums?ids={{contained_album}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{contained_album}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check user's saved albums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Correct assertion. First album is present the second is not.\", function(){",
+									"   pm.expect(response[0]).to.eql(true);",
+									"   pm.expect(response[1]).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums/contains?contains=&ids={{contained_album}},{{album_not_contained}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums",
+								"contains"
+							],
+							"query": [
+								{
+									"key": "contains",
+									"value": ""
+								},
+								{
+									"key": "ids",
+									"value": "{{contained_album}},{{album_not_contained}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check user's saved albums Negative_test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var json_response = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Error message is contained. Bad ids\", function() {",
+									"    pm.expect(json_response.error.message).to.contain(\"Bad ID\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums/contains?contains=&ids={{incorrect_album_uris}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums",
+								"contains"
+							],
+							"query": [
+								{
+									"key": "contains",
+									"value": ""
+								},
+								{
+									"key": "ids",
+									"value": "{{incorrect_album_uris}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Albums fro Current User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums?ids={{existing_album_id}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{existing_album_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Albums fro Current User Negative_Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f7e2ce-ae05-4d08-a280-90406868b67d",
+								"exec": [
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var json_response = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Error message is contained. Bad ids\", function() {",
+									"    pm.expect(json_response.error.message).to.contain(\"Bad ID\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums?ids={{incorrect_album_uris}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{incorrect_album_uris}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/library/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Library_endpoint_part2_Fabian",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Tracks for User Positive test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87a42a1e-b3ca-4d6f-a433-7a1bdf8b86e9",
+								"exec": [
+									"pm.test(\"Response 200. Response ok.\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/tracks?ids={{track_id_1}},{{track_id_2}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"tracks"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{track_id_1}},{{track_id_2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Tracks for User Negative test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87a42a1e-b3ca-4d6f-a433-7a1bdf8b86e9",
+								"exec": [
+									"pm.test(\"Response 400. Response is correct.\", function(){",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Error message found in JSON response.\", function(){",
+									"    pm.expect(resp.error.message).to.eql(\"Bad ID\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks_negative}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"tracks"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{to_add_tracks_negative}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Albums for Current User Positive test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3322783-ca84-4b3a-b899-28f2b596881a",
+								"exec": [
+									"pm.test(\"Response 200. Response ok.\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums?ids={{album_id_1}},{{album_id_2}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{album_id_1}},{{album_id_2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Albums for Current Negative test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ae5edd5-382f-47df-b7f5-c228aada5313",
+								"exec": [
+									"pm.test(\"Response 400. Response is correct.\", function(){",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Error message found in JSON response.\", function(){",
+									"    pm.expect(resp.error.message).to.eql(\"Bad ID\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids_negative}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "{{save_album_ids_negative}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User's Saved tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "db516bd1-ad24-470b-a9d4-bc746630bc4a",
+								"exec": [
+									"pm.test(\"Response 200. Response is correct.\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"The limit is set to 10.\", function(){",
+									"    pm.expect(resp.limit).to.eql(10);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me/tracks?limit=10",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me",
+								"tracks"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/library/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Playlists_endpoint_part1_Fabian",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_tracks_to_playlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb15bff4-1092-4fc9-8ea3-8202b294d427",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var snapshot = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Snapshot has been generated ==> POST was delivered successfully!\", function(){\r",
+									"    pm.expect(snapshot).to.have.property(\"snapshot_id\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uris\":[\"spotify:track:3eXGKKzpQxRXZTwTbSq3d7\",\"spotify:track:5zUqLYPYoFZQh7dUBP5qBi\"]\n}"
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/playlists/{{playlist_id}}/tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_tracks_to_playlist-Negative-test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02527601-526d-4a4b-8811-eed392744e02",
+								"exec": [
+									"pm.test(\"Response is correct, status code 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"var response_code = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Incorrect track URI detected. Error has been thrown.\", function(){\r",
+									"    pm.expect(response_code.error.message).to.include(\"Invalid track uri:\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uris\":[\"spotify:track:3eXGKKzpQxRXZTwTbSq3d\",\"spotify:track:5zUqLYPYoFZQh7dUBP5qBi\"]\n}"
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/playlists/{{playlist_id}}/tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace a playlist's tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7985427-aa52-469b-bf70-1306f0a10ef6",
+								"exec": [
+									"pm.test(\"Response is ok, status code 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var snapshot = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Snapshot has been generated ==> POST was delivered successfully!\", function(){\r",
+									"    pm.expect(snapshot).to.have.property(\"snapshot_id\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uris\" : \n\t[\"spotify:track:42vYxMAWsFpBOS7hgAdzqW\",\"spotify:track:3eXGKKzpQxRXZTwTbSq3d7\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/playlists/{{playlist_id}}/tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace a playlist's tracks Negative_Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f52ba85-e087-4b57-adbd-0146f5497674",
+								"exec": [
+									"pm.test(\"Response is correct, status code 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"var response_code = JSON.parse(responseBody);\r",
+									"\r",
+									"pm.test(\"Incorrect track URI detected. Error has been thrown.\", function(){\r",
+									"    pm.expect(response_code.error.message).to.include(\"JSON body contains an invalid track uri:\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uris\" : \n\t[\"spotify:track:42vYxMAWsFpBOS7hgAdz\",\"spotify:track:3eXGKKzpQxRXZTwTbSq3d7\"]\n}\n ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/playlists/{{playlist_id}}/tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"playlists",
+								"{{playlist_id}}",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/playlists/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Spotify_Search_endpoint_Fabian",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for an item Positive-BVA_50_limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+								"exec": [
+									"pm.test(\"Response is ok. Code 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/search?q={{search_item}}&type={{search_type}}&market=RO&limit=50",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{search_item}}"
+								},
+								{
+									"key": "type",
+									"value": "{{search_type}}"
+								},
+								{
+									"key": "market",
+									"value": "RO"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for an item Negative-BVA_51_limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "883bc657-91df-4649-bcb3-5108c4da4a01",
+								"exec": [
+									"pm.test(\"Response is ok. Code 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"var resp = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response body contains the message Invalid limit.\", function() {",
+									"    pm.expect(resp.error.message).to.eql(\"Invalid limit\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/search?q={{search_item}}&type={{search_type}}&market=RO&limit=51",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{search_item}}"
+								},
+								{
+									"key": "type",
+									"value": "{{search_type}}"
+								},
+								{
+									"key": "market",
+									"value": "RO"
+								},
+								{
+									"key": "limit",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/search/search/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tracks_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get audio analysis for a track",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+								"exec": [
+									"console.log(\"Get the audio analysis for a track\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData.meta).to.have.property('analyzer_version');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/audio-analysis/{{track_id_1}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"audio-analysis",
+								"{{track_id_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get audio features for a track",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+								"exec": [
+									"console.log(\"Get the audio features for a track\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('danceability');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/audio-features/{{track_id_2}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"audio-features",
+								"{{track_id_2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a track negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0571ac0c-03b2-4268-81e3-be07ab2288c8",
+								"exec": [
+									"console.log(\"Get an invalid track\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d17457af-ebed-4176-bb53-00baa77607d6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Response is ok, status code 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test('Property is present', function() {",
+									"  pm.expect(jsonData).to.have.property('error');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/tracks/invalid",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"tracks",
+								"invalid"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/tracks/",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users_Profile_Dan",
+			"item": [
+				{
+					"name": "Refresh_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b06aacd6-e9da-4335-b290-ae63c95da5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+									"",
+									"pm.test(\"Response is ok, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "895b7b07-0370-4040-ba35-d78ec97d092e",
+								"exec": [
+									"console.log('Refresh the TOKEN!');",
+									"postman.setEnvironmentVariable(\"base64_Authorization\", btoa(pm.variables.get(\"client_id\")+\":\"+pm.variables.get(\"client_secret\")));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{base64_Authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "secret_id",
+									"value": "{{client_secret}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{accounts_domain}}/api/token",
+							"host": [
+								"{{accounts_domain}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user's profile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+								"exec": [
+									"console.log(\"Get the current user's profile!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+								"exec": [
+									"pm.test(\"The current user's profile, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"The current user was shown!\", function () {",
+									"    pm.expect(jsonData.id).to.eql(pm.variables.get(\"user_id\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a user's profile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+								"exec": [
+									"console.log(\"Get a user's profile!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+								"exec": [
+									"pm.test(\"The user's profile, status code 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"The user was shown!\", function () {",
+									"    pm.expect(jsonData.id).to.eql(\"winterlord22\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/users/{{other_user_id}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{{other_user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a user's profile negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+								"exec": [
+									"console.log(\"Get a user's profile!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+								"exec": [
+									"pm.test(\"The user's profile, status code 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"The user was not shown!\", function () {",
+									"    pm.expect(jsonData.error.message).to.eql(\"No token provided\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/users/{{other_user_id}}",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{{other_user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user's profile negative",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98d119aa-d764-4e6c-82f1-109d1b406d1a",
+								"exec": [
+									"console.log(\"Get the current user's profile!\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e38b3f96-9e28-4e12-94d0-22321e5091c8",
+								"exec": [
+									"pm.test(\"The current user's profile, status code 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"The current user was not shown!\", function () {",
+									"    pm.expect(jsonData.error.message).to.eql(\"No token provided\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_domain}}/v1/me",
+							"host": [
+								"{{api_domain}}"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "https://developer.spotify.com/documentation/web-api/reference/users-profile/",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
