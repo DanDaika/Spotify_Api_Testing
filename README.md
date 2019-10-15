@@ -1,12 +1,9 @@
-===================
 Spotify_Api_Testing
-
+===================
 Test Spotify API endpoints, using POSTMAN.
 POSTMAN for WINDOWS v7.9.0
-
-
 Version 1.0
-===========
+-----------
 	- New environment variables template has been created
 	- All tests suites run with the standardized environment variables
 	- Version added for the current document
