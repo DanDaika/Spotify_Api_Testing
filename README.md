@@ -1,12 +1,16 @@
-# Spotify_Api_Testing
+===================
+Spotify_Api_Testing
+===================
 Test Spotify API endpoints, using POSTMAN.
 POSTMAN for WINDOWS v7.9.0
-------------------------------
+
+===========
 Version 1.0
+===========
 	- New environment variables template has been created
 	- All tests suites run with the standardized environment variables
 	- Version added for the current document
-------------------------------
+
 SETUP FOR NEW TESTER
 Steps on how to obtain the "client_id" and "secret_id" can be found here: https://developer.spotify.com/documentation/general/guides/app-settings/
 A new non-commercial application needs to be created within your spotify account for you to recieve both client_id and your client_secret. Both of these will be important later on for you to obtain your authentification
