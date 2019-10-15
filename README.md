@@ -21,8 +21,8 @@ and refresher token.
 
 SETUP TO OBTAIN THE CODE
 ------------------------
-* Without POSTMAN
------------------
+***Without POSTMAN***
+
  + Steps needed to generate the first access "code" can be found here: https://developer.spotify.com/documentation/general/guides/app-settings/
  + Before you can get the CODE you need to manually grant access to your account. You do that by using the following link: 
 	https://accounts.spotify.com/authorize?client_id={{client_id}}&response_type=code&redirect_uri={{redirect_uri}}&state={{state}}&scope={{scopes}}&show_dialog=false
@@ -43,8 +43,8 @@ SETUP TO OBTAIN THE CODE
  + You can find a list of scopes in this link: https://developer.spotify.com/documentation/general/guides/scopes
  + After granting access to your account you will get the CODE in the returned URL. Further on you can exchange this CODE for the TOKEN and REFRESH_TOKEN.
  
-* With POSTMAN
---------------
+***With POSTMAN***
+
 1. From Base Tests folder get the following POSTMAN collection: Get the CODE, the TOKEN and the REFRESH TOKEN
 2. From Environment Variables folder get the following POSTMAN environment: Spotify_API_Template
 3. Start POSTMAN and import the collection and the environment
