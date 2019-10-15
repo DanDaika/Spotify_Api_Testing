@@ -1,8 +1,8 @@
 {
-	"id": "7ab15a3b-cba1-4488-ab01-7f039594d1eb",
+	"id": "575436e7-3cf9-41a8-b03e-a096f41f08ee",
 	"name": "Tests",
 	"allTests": [],
-	"timestamp": "2019-10-14T13:43:34.992Z",
+	"timestamp": "2019-10-15T10:57:16.222Z",
 	"collection_id": "bf731b59-3840-41fa-a29b-67303fb155e7",
 	"folder_id": 0,
 	"target_type": "collection",
@@ -33,7 +33,7 @@
 			"dab8bb06-b9b0-4bbd-b987-4fc4abc8cd0e",
 			"44a48c64-05e8-48f9-97b6-17a31ed432b4"
 		],
-		"isFavorite": true
+		"isFavorite": false
 	},
 	"folder": null,
 	"environment": null,
@@ -62,15 +62,15 @@
 				}
 			},
 			"times": [
-				"47"
+				"46"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "47",
-			"totalRequestTime": "47",
+			"time": "46",
+			"totalRequestTime": "46",
 			"iterationResults": {}
 		},
 		{
@@ -106,7 +106,7 @@
 				}
 			},
 			"times": [
-				"89"
+				"47"
 			],
 			"allTests": [
 				{
@@ -115,8 +115,8 @@
 					"Validate JSON schema": true
 				}
 			],
-			"time": "89",
-			"totalRequestTime": "89",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
@@ -152,7 +152,7 @@
 				}
 			},
 			"times": [
-				"50"
+				"47"
 			],
 			"allTests": [
 				{
@@ -161,8 +161,8 @@
 					"Validate JSON schema": true
 				}
 			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
@@ -188,15 +188,15 @@
 				}
 			},
 			"times": [
-				"43"
+				"42"
 			],
 			"allTests": [
 				{
 					"Invalid ID, status code 400": true
 				}
 			],
-			"time": "43",
-			"totalRequestTime": "43",
+			"time": "42",
+			"totalRequestTime": "42",
 			"iterationResults": {}
 		},
 		{
@@ -222,20 +222,20 @@
 				}
 			},
 			"times": [
-				"43"
+				"41"
 			],
 			"allTests": [
 				{
 					"Invalid ID, status code 400": true
 				}
 			],
-			"time": "43",
-			"totalRequestTime": "43",
+			"time": "41",
+			"totalRequestTime": "41",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "bb38cd4f-26a8-48a6-93c2-1b0a62961110",
+			"id": "fb8aee9a-41ff-4ea4-9f94-6acb819e56b8",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -256,15 +256,15 @@
 				}
 			},
 			"times": [
-				"50"
+				"49"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "49",
+			"totalRequestTime": "49",
 			"iterationResults": {}
 		},
 		{
@@ -295,7 +295,7 @@
 				}
 			},
 			"times": [
-				"54"
+				"53"
 			],
 			"allTests": [
 				{
@@ -303,8 +303,8 @@
 					"Artist is correct": true
 				}
 			],
-			"time": "54",
-			"totalRequestTime": "54",
+			"time": "53",
+			"totalRequestTime": "53",
 			"iterationResults": {}
 		},
 		{
@@ -335,7 +335,7 @@
 				}
 			},
 			"times": [
-				"88"
+				"42"
 			],
 			"allTests": [
 				{
@@ -343,13 +343,13 @@
 					"Artist is incorect": true
 				}
 			],
-			"time": "88",
-			"totalRequestTime": "88",
+			"time": "42",
+			"totalRequestTime": "42",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "93daf91d-f8ef-4907-85a4-8893ffdf8244",
+			"id": "7ab94ed2-b24a-4bd1-b1f0-af6fc7b6b4f4",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -370,15 +370,15 @@
 				}
 			},
 			"times": [
-				"59"
+				"47"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "59",
-			"totalRequestTime": "59",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
@@ -409,7 +409,7 @@
 				}
 			},
 			"times": [
-				"62"
+				"46"
 			],
 			"allTests": [
 				{
@@ -417,8 +417,8 @@
 					"Category is correct": true
 				}
 			],
-			"time": "62",
-			"totalRequestTime": "62",
+			"time": "46",
+			"totalRequestTime": "46",
 			"iterationResults": {}
 		},
 		{
@@ -449,7 +449,7 @@
 				}
 			},
 			"times": [
-				"63"
+				"64"
 			],
 			"allTests": [
 				{
@@ -457,13 +457,13 @@
 					"Category is incorrect": true
 				}
 			],
-			"time": "63",
-			"totalRequestTime": "63",
+			"time": "64",
+			"totalRequestTime": "64",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "125f737b-c8e6-4d7f-b420-3906dd419ce0",
+			"id": "b50df620-1366-4632-be5e-d93b162600f8",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -484,15 +484,15 @@
 				}
 			},
 			"times": [
-				"50"
+				"47"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
@@ -523,7 +523,7 @@
 				}
 			},
 			"times": [
-				"60"
+				"52"
 			],
 			"allTests": [
 				{
@@ -531,8 +531,8 @@
 					"Property is present": true
 				}
 			],
-			"time": "60",
-			"totalRequestTime": "60",
+			"time": "52",
+			"totalRequestTime": "52",
 			"iterationResults": {}
 		},
 		{
@@ -563,7 +563,7 @@
 				}
 			},
 			"times": [
-				"40"
+				"38"
 			],
 			"allTests": [
 				{
@@ -571,13 +571,13 @@
 					"Property is present": true
 				}
 			],
-			"time": "40",
-			"totalRequestTime": "40",
+			"time": "38",
+			"totalRequestTime": "38",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "6bb472a8-8ed1-40e2-98db-f7115faee89d",
+			"id": "4ace7fda-4867-4323-9ad9-1b5a1b29d0c1",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -598,15 +598,15 @@
 				}
 			},
 			"times": [
-				"54"
+				"49"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "54",
-			"totalRequestTime": "54",
+			"time": "49",
+			"totalRequestTime": "49",
 			"iterationResults": {}
 		},
 		{
@@ -632,15 +632,15 @@
 				}
 			},
 			"times": [
-				"59"
+				"58"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 204": true
 				}
 			],
-			"time": "59",
-			"totalRequestTime": "59",
+			"time": "58",
+			"totalRequestTime": "58",
 			"iterationResults": {}
 		},
 		{
@@ -676,7 +676,7 @@
 				}
 			},
 			"times": [
-				"57"
+				"48"
 			],
 			"allTests": [
 				{
@@ -685,8 +685,8 @@
 					"Validate JSON schema": true
 				}
 			],
-			"time": "57",
-			"totalRequestTime": "57",
+			"time": "48",
+			"totalRequestTime": "48",
 			"iterationResults": {}
 		},
 		{
@@ -712,15 +712,15 @@
 				}
 			},
 			"times": [
-				"73"
+				"56"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 204": true
 				}
 			],
-			"time": "73",
-			"totalRequestTime": "73",
+			"time": "56",
+			"totalRequestTime": "56",
 			"iterationResults": {}
 		},
 		{
@@ -751,7 +751,7 @@
 				}
 			},
 			"times": [
-				"41"
+				"40"
 			],
 			"allTests": [
 				{
@@ -759,13 +759,13 @@
 					"Invalid aritist id!": true
 				}
 			],
-			"time": "41",
-			"totalRequestTime": "41",
+			"time": "40",
+			"totalRequestTime": "40",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "8877119b-412a-454f-8787-43b46a0dcb64",
+			"id": "b49bb64d-477c-4395-8b92-f8889572e6c6",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -786,15 +786,15 @@
 				}
 			},
 			"times": [
-				"55"
+				"49"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "55",
-			"totalRequestTime": "55",
+			"time": "49",
+			"totalRequestTime": "49",
 			"iterationResults": {}
 		},
 		{
@@ -825,7 +825,7 @@
 				}
 			},
 			"times": [
-				"52"
+				"46"
 			],
 			"allTests": [
 				{
@@ -833,8 +833,8 @@
 					"Property is present": true
 				}
 			],
-			"time": "52",
-			"totalRequestTime": "52",
+			"time": "46",
+			"totalRequestTime": "46",
 			"iterationResults": {}
 		},
 		{
@@ -865,7 +865,7 @@
 				}
 			},
 			"times": [
-				"52"
+				"58"
 			],
 			"allTests": [
 				{
@@ -873,8 +873,8 @@
 					"Property is present": true
 				}
 			],
-			"time": "52",
-			"totalRequestTime": "52",
+			"time": "58",
+			"totalRequestTime": "58",
 			"iterationResults": {}
 		},
 		{
@@ -900,20 +900,20 @@
 				}
 			},
 			"times": [
-				"41"
+				"38"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 404": true
 				}
 			],
-			"time": "41",
-			"totalRequestTime": "41",
+			"time": "38",
+			"totalRequestTime": "38",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "5cbf52cf-4dd2-45a7-95ce-c22c52b92e00",
+			"id": "8379bda8-e37c-4d14-8c54-f27d46ca0265",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -934,15 +934,49 @@
 				}
 			},
 			"times": [
-				"53"
+				"49"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "53",
-			"totalRequestTime": "53",
+			"time": "49",
+			"totalRequestTime": "49",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get recent played tracks",
+			"id": "2eb157cf-9e45-4ab5-9909-d9dd3ffa300d",
+			"url": "https://api.spotify.com/v1/me/player/recently-played",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"72"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "72",
+			"totalRequestTime": "72",
 			"iterationResults": {}
 		},
 		{
@@ -1021,7 +1055,7 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "a2956f4b-8fab-45d1-bddb-318f0237bbd7",
+			"id": "b35aaf63-b311-4081-be74-ade13fcd6d5b",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -1042,15 +1076,15 @@
 				}
 			},
 			"times": [
-				"48"
+				"50"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "48",
-			"totalRequestTime": "48",
+			"time": "50",
+			"totalRequestTime": "50",
 			"iterationResults": {}
 		},
 		{
@@ -1081,7 +1115,7 @@
 				}
 			},
 			"times": [
-				"87"
+				"85"
 			],
 			"allTests": [
 				{
@@ -1089,14 +1123,14 @@
 					"The Playlist was created": true
 				}
 			],
-			"time": "87",
-			"totalRequestTime": "87",
+			"time": "85",
+			"totalRequestTime": "85",
 			"iterationResults": {}
 		},
 		{
 			"name": "Add tracks to a playlist",
 			"id": "75369d08-4838-4feb-80fa-122a9823be0f",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 201,
@@ -1121,7 +1155,7 @@
 				}
 			},
 			"times": [
-				"64"
+				"80"
 			],
 			"allTests": [
 				{
@@ -1129,14 +1163,14 @@
 					"Property is present": true
 				}
 			],
-			"time": "64",
-			"totalRequestTime": "64",
+			"time": "80",
+			"totalRequestTime": "80",
 			"iterationResults": {}
 		},
 		{
 			"name": "Remove tracks from a playlist",
 			"id": "69f37a8d-4061-4cc6-8afa-a1c1878de30f",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -1161,7 +1195,7 @@
 				}
 			},
 			"times": [
-				"81"
+				"68"
 			],
 			"allTests": [
 				{
@@ -1169,14 +1203,14 @@
 					"Property is present": true
 				}
 			],
-			"time": "81",
-			"totalRequestTime": "81",
+			"time": "68",
+			"totalRequestTime": "68",
 			"iterationResults": {}
 		},
 		{
 			"name": "Change a playlists name and description",
 			"id": "686df7a7-4748-4558-92a1-4e9c6d8afb40",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -1196,21 +1230,21 @@
 				}
 			},
 			"times": [
-				"77"
+				"149"
 			],
 			"allTests": [
 				{
 					"The name and description were changed, status code 200": true
 				}
 			],
-			"time": "77",
-			"totalRequestTime": "77",
+			"time": "149",
+			"totalRequestTime": "149",
 			"iterationResults": {}
 		},
 		{
 			"name": "Add tracks to a playlist negative",
 			"id": "bf13215a-a831-4d50-bd7a-6929cb767308",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 400,
@@ -1250,7 +1284,7 @@
 		{
 			"name": "Remove tracks from a playlist negative",
 			"id": "1845ba63-da5a-4439-997e-5ee3b3e8cc45",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 400,
@@ -1275,7 +1309,7 @@
 				}
 			},
 			"times": [
-				"40"
+				"44"
 			],
 			"allTests": [
 				{
@@ -1283,13 +1317,309 @@
 					"Property is present": true
 				}
 			],
-			"time": "40",
-			"totalRequestTime": "40",
+			"time": "44",
+			"totalRequestTime": "44",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "d94e5aba-b76b-4652-ab8d-f4715b563069",
+			"id": "6c9c980d-bf3f-4752-ac8d-a336964257d0",
+			"url": "https://accounts.spotify.com/api/token",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"47"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "47",
+			"totalRequestTime": "47",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get a playlist's cover image",
+			"id": "eef124da-8527-4459-acc6-3f3e39767b6a",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/images",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true,
+				"Image is available!": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Image is available!": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"63"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true,
+					"Image is available!": true
+				}
+			],
+			"time": "63",
+			"totalRequestTime": "63",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get a playlist's cover image negative",
+			"id": "fa510d41-6c21-4f3a-b7ba-b2be80dfea8b",
+			"url": "https://api.spotify.com/v1/playlists/wrong/images",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 502,
+				"name": "Bad Gateway",
+				"detail": {
+					"name": "Bad Gateway",
+					"detail": "The server was acting as a gateway or proxy and received an invalid response from the upstream server."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 502": true,
+				"Image is available!": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 502": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Image is available!": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"44"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 502": true,
+					"Image is available!": true
+				}
+			],
+			"time": "44",
+			"totalRequestTime": "44",
+			"iterationResults": {}
+		},
+		{
+			"name": "Refresh_token",
+			"id": "916aaea9-5ae0-4eee-bf4f-d8104f8a2cc3",
+			"url": "https://accounts.spotify.com/api/token",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"52"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "52",
+			"totalRequestTime": "52",
+			"iterationResults": {}
+		},
+		{
+			"name": "Artist by artist ID_Negative",
+			"id": "f371a3da-7ec2-4f69-8b27-14b8d3789b53",
+			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 400": true,
+				"Invalid id is correctly shown in the error message.": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Invalid id is correctly shown in the error message.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"46"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 400": true,
+					"Invalid id is correctly shown in the error message.": true
+				}
+			],
+			"time": "46",
+			"totalRequestTime": "46",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get an artist's related artists Positive",
+			"id": "8d1beed0-3ce4-4205-9486-01929fd235be",
+			"url": "https://api.spotify.com/v1/artists/3hE8S8ohRErocpkY7uJW4a/related-artists",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"55"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 200": true
+				}
+			],
+			"time": "55",
+			"totalRequestTime": "55",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get an artist's related artists Negative",
+			"id": "87a7a470-3f9b-4bef-958a-8f2575fc0366",
+			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx/related-artists",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 400": true,
+				"Invalid id is correctly shown in the error message.": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Invalid id is correctly shown in the error message.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"41"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 400": true,
+					"Invalid id is correctly shown in the error message.": true
+				}
+			],
+			"time": "41",
+			"totalRequestTime": "41",
+			"iterationResults": {}
+		},
+		{
+			"name": "Artist by artist ID_Positive",
+			"id": "938bbe61-9f87-4e10-912d-1f52851dd851",
+			"url": "https://api.spotify.com/v1/artists/3hE8S8ohRErocpkY7uJW4a?=",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"42"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 200": true
+				}
+			],
+			"time": "42",
+			"totalRequestTime": "42",
+			"iterationResults": {}
+		},
+		{
+			"name": "Refresh_token",
+			"id": "3b95704d-f3d5-4b41-9cb0-ff4ea4e2e48d",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -1322,302 +1652,6 @@
 			"iterationResults": {}
 		},
 		{
-			"name": "Get a playlist's cover image",
-			"id": "eef124da-8527-4459-acc6-3f3e39767b6a",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/images",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true,
-				"Image is available!": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Image is available!": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"61"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true,
-					"Image is available!": true
-				}
-			],
-			"time": "61",
-			"totalRequestTime": "61",
-			"iterationResults": {}
-		},
-		{
-			"name": "Get a playlist's cover image negative",
-			"id": "fa510d41-6c21-4f3a-b7ba-b2be80dfea8b",
-			"url": "https://api.spotify.com/v1/playlists/wrong/images",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 502,
-				"name": "Bad Gateway",
-				"detail": {
-					"name": "Bad Gateway",
-					"detail": "The server was acting as a gateway or proxy and received an invalid response from the upstream server."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 502": true,
-				"Image is available!": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 502": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Image is available!": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"42"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 502": true,
-					"Image is available!": true
-				}
-			],
-			"time": "42",
-			"totalRequestTime": "42",
-			"iterationResults": {}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "8375fb9e-939a-47ec-9094-6bb469ffb2a3",
-			"url": "https://accounts.spotify.com/api/token",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"51"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true
-				}
-			],
-			"time": "51",
-			"totalRequestTime": "51",
-			"iterationResults": {}
-		},
-		{
-			"name": "Artist by artist ID_Negative",
-			"id": "f371a3da-7ec2-4f69-8b27-14b8d3789b53",
-			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 400": true,
-				"Invalid id is correctly shown in the error message.": true
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Invalid id is correctly shown in the error message.": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"40"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 400": true,
-					"Invalid id is correctly shown in the error message.": true
-				}
-			],
-			"time": "40",
-			"totalRequestTime": "40",
-			"iterationResults": {}
-		},
-		{
-			"name": "Get an artist's related artists Positive",
-			"id": "8d1beed0-3ce4-4205-9486-01929fd235be",
-			"url": "https://api.spotify.com/v1/artists/{{artist_id}}/related-artists",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 200": false
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 200": {
-					"pass": 0,
-					"fail": 1
-				}
-			},
-			"times": [
-				"45"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 200": false
-				}
-			],
-			"time": "45",
-			"totalRequestTime": "45",
-			"iterationResults": {}
-		},
-		{
-			"name": "Get an artist's related artists Negative",
-			"id": "87a7a470-3f9b-4bef-958a-8f2575fc0366",
-			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx/related-artists",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 400": true,
-				"Invalid id is correctly shown in the error message.": true
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Invalid id is correctly shown in the error message.": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"45"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 400": true,
-					"Invalid id is correctly shown in the error message.": true
-				}
-			],
-			"time": "45",
-			"totalRequestTime": "45",
-			"iterationResults": {}
-		},
-		{
-			"name": "Artist by artist ID_Positive",
-			"id": "938bbe61-9f87-4e10-912d-1f52851dd851",
-			"url": "https://api.spotify.com/v1/artists/{{artist_id}}?=",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 200": false
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 200": {
-					"pass": 0,
-					"fail": 1
-				}
-			},
-			"times": [
-				"40"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 200": false
-				}
-			],
-			"time": "40",
-			"totalRequestTime": "40",
-			"iterationResults": {}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "643ed775-8d4f-4e66-b89b-78f208b0d22f",
-			"url": "https://accounts.spotify.com/api/token",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"50"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true
-				}
-			],
-			"time": "50",
-			"totalRequestTime": "50",
-			"iterationResults": {}
-		},
-		{
 			"name": "Get_Recomendations_Retesting",
 			"id": "48d3a3f7-690a-422e-8030-8e1885f82c4f",
 			"url": "https://api.spotify.com/v1/recommendations?limit=100&seed_artists=7fWgqc4HJi3pcHhK8hKg2p&market=US",
@@ -1640,49 +1674,15 @@
 				}
 			},
 			"times": [
-				"111"
+				"130"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "111",
-			"totalRequestTime": "111",
-			"iterationResults": {}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "c8df040a-cd4f-463b-b4f0-8414c3571ea8",
-			"url": "https://accounts.spotify.com/api/token",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"50"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true
-				}
-			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "130",
+			"totalRequestTime": "130",
 			"iterationResults": {}
 		},
 		{
@@ -1713,7 +1713,7 @@
 				}
 			},
 			"times": [
-				"60"
+				"41"
 			],
 			"allTests": [
 				{
@@ -1721,8 +1721,8 @@
 					"The schema is valid.": true
 				}
 			],
-			"time": "60",
-			"totalRequestTime": "60",
+			"time": "41",
+			"totalRequestTime": "41",
 			"iterationResults": {}
 		},
 		{
@@ -1753,7 +1753,7 @@
 				}
 			},
 			"times": [
-				"42"
+				"40"
 			],
 			"allTests": [
 				{
@@ -1761,8 +1761,8 @@
 					"Response URL correctly throws the error": true
 				}
 			],
-			"time": "42",
-			"totalRequestTime": "42",
+			"time": "40",
+			"totalRequestTime": "40",
 			"iterationResults": {}
 		},
 		{
@@ -1788,15 +1788,15 @@
 				}
 			},
 			"times": [
-				"61"
+				"62"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "61",
-			"totalRequestTime": "61",
+			"time": "62",
+			"totalRequestTime": "62",
 			"iterationResults": {}
 		},
 		{
@@ -1827,7 +1827,7 @@
 				}
 			},
 			"times": [
-				"42"
+				"78"
 			],
 			"allTests": [
 				{
@@ -1835,13 +1835,13 @@
 					"Response URL correctly throws the error": true
 				}
 			],
-			"time": "42",
-			"totalRequestTime": "42",
+			"time": "78",
+			"totalRequestTime": "78",
 			"iterationResults": {}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "651b18fa-2bb9-4455-8350-eb020228adae",
+			"name": "Refresh_token",
+			"id": "57166496-d190-40aa-8e39-16c1a77448cc",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -1862,175 +1862,21 @@
 				}
 			},
 			"times": [
-				"48"
+				"47"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "48",
-			"totalRequestTime": "48",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
-			"name": "Check user's saved albums",
-			"id": "828de01b-0422-49f5-8b8c-909f54252e81",
-			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=4acB71ZhsfYGdTdqdbpzLK,1JifWi3bCvGr7MsdHYumjD",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true,
-				"Correct assertion. First album is present the second is not.": false
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Correct assertion. First album is present the second is not.": {
-					"pass": 0,
-					"fail": 1
-				}
-			},
-			"times": [
-				"46"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true,
-					"Correct assertion. First album is present the second is not.": false
-				}
-			],
-			"time": "46",
-			"totalRequestTime": "46",
-			"iterationResults": {}
-		},
-		{
-			"name": "Check user's saved albums Negative_test",
-			"id": "4d2c70a8-6695-457f-8bf8-b77c8a7577d5",
-			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 400": true,
-				"Error message is contained. Bad ids": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Error message is contained. Bad ids": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"43"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 400": true,
-					"Error message is contained. Bad ids": true
-				}
-			],
-			"time": "43",
-			"totalRequestTime": "43",
-			"iterationResults": {}
-		},
-		{
-			"name": "Remove Albums fro Current User",
-			"id": "2e76dc5c-eece-44e1-bed8-2919d72703dd",
-			"url": "https://api.spotify.com/v1/me/albums?ids=1SL2IdaCrXDtv695Px6AXR",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"65"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true
-				}
-			],
-			"time": "65",
-			"totalRequestTime": "65",
-			"iterationResults": {}
-		},
-		{
-			"name": "Remove Albums fro Current User Negative_Test",
-			"id": "e87ecf82-c477-49bf-a7e8-0b8dff9434fc",
-			"url": "https://api.spotify.com/v1/me/albums?ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 400": true,
-				"Error message is contained. Bad ids": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Error message is contained. Bad ids": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"45"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 400": true,
-					"Error message is contained. Bad ids": true
-				}
-			],
-			"time": "45",
-			"totalRequestTime": "45",
-			"iterationResults": {}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "acbe134a-51ff-416d-b3ee-d5652c8bc85b",
-			"url": "https://accounts.spotify.com/api/token",
+			"name": "Save an album for the current user",
+			"id": "53b1882b-575a-4c3d-a0bc-7842ff963254",
+			"url": "https://api.spotify.com/v1/me/albums?ids=4acB71ZhsfYGdTdqdbpzLK",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -2062,9 +1908,49 @@
 			"iterationResults": {}
 		},
 		{
-			"name": "Save Tracks for User Positive test",
-			"id": "e199775b-83e8-459b-acc5-5484d10b2de8",
-			"url": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks}}",
+			"name": "Check user's saved albums",
+			"id": "828de01b-0422-49f5-8b8c-909f54252e81",
+			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=4acB71ZhsfYGdTdqdbpzLK,1JifWi3bCvGr7MsdHYumjD",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true,
+				"Correct assertion. First album is present the second is not.": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Correct assertion. First album is present the second is not.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"44"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true,
+					"Correct assertion. First album is present the second is not.": true
+				}
+			],
+			"time": "44",
+			"totalRequestTime": "44",
+			"iterationResults": {}
+		},
+		{
+			"name": "Check user's saved albums Negative_test",
+			"id": "4d2c70a8-6695-457f-8bf8-b77c8a7577d5",
+			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 400,
@@ -2075,12 +1961,91 @@
 				}
 			},
 			"tests": {
-				"Response 200. Response ok.": false
+				"Response is ok, status code 400": true,
+				"Error message is contained. Bad ids": true
 			},
 			"testPassFailCounts": {
-				"Response 200. Response ok.": {
-					"pass": 0,
-					"fail": 1
+				"Response is ok, status code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is contained. Bad ids": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"39"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 400": true,
+					"Error message is contained. Bad ids": true
+				}
+			],
+			"time": "39",
+			"totalRequestTime": "39",
+			"iterationResults": {}
+		},
+		{
+			"name": "Remove Albums fro Current User",
+			"id": "2e76dc5c-eece-44e1-bed8-2919d72703dd",
+			"url": "https://api.spotify.com/v1/me/albums?ids=1SL2IdaCrXDtv695Px6AXR",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"53"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "53",
+			"totalRequestTime": "53",
+			"iterationResults": {}
+		},
+		{
+			"name": "Remove Albums fro Current User Negative_Test",
+			"id": "e87ecf82-c477-49bf-a7e8-0b8dff9434fc",
+			"url": "https://api.spotify.com/v1/me/albums?ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 400": true,
+				"Error message is contained. Bad ids": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is contained. Bad ids": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
 			"times": [
@@ -2088,11 +2053,80 @@
 			],
 			"allTests": [
 				{
-					"Response 200. Response ok.": false
+					"Response is ok, status code 400": true,
+					"Error message is contained. Bad ids": true
 				}
 			],
 			"time": "43",
 			"totalRequestTime": "43",
+			"iterationResults": {}
+		},
+		{
+			"name": "Refresh_token",
+			"id": "25b57009-5b73-4545-8f14-ba17c712e0a4",
+			"url": "https://accounts.spotify.com/api/token",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"48"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "48",
+			"totalRequestTime": "48",
+			"iterationResults": {}
+		},
+		{
+			"name": "Save Tracks for User Positive test",
+			"id": "e199775b-83e8-459b-acc5-5484d10b2de8",
+			"url": "https://api.spotify.com/v1/me/tracks?ids=5hyb6e5o5dPm7wbUi5wlhb,0lqfBvf1Gqmmt3l5Qeirlm",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response 200. Response ok.": true
+			},
+			"testPassFailCounts": {
+				"Response 200. Response ok.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"58"
+			],
+			"allTests": [
+				{
+					"Response 200. Response ok.": true
+				}
+			],
+			"time": "58",
+			"totalRequestTime": "58",
 			"iterationResults": {}
 		},
 		{
@@ -2123,7 +2157,7 @@
 				}
 			},
 			"times": [
-				"40"
+				"42"
 			],
 			"allTests": [
 				{
@@ -2131,42 +2165,42 @@
 					"Error message found in JSON response.": true
 				}
 			],
-			"time": "40",
-			"totalRequestTime": "40",
+			"time": "42",
+			"totalRequestTime": "42",
 			"iterationResults": {}
 		},
 		{
 			"name": "Save Albums for Current User Positive test",
 			"id": "612b46eb-4960-4590-8dae-c53aa8ae0d75",
-			"url": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids}}",
+			"url": "https://api.spotify.com/v1/me/albums?ids=6R6nH5TVNEquzoNfqCPLaB,0O82niJ0NpcptYRxogeEZu",
 			"totalTime": 0,
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
+				"code": 200,
+				"name": "OK",
 				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
 			"tests": {
-				"Response 200. Response ok.": false
+				"Response 200. Response ok.": true
 			},
 			"testPassFailCounts": {
 				"Response 200. Response ok.": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			},
 			"times": [
-				"40"
+				"60"
 			],
 			"allTests": [
 				{
-					"Response 200. Response ok.": false
+					"Response 200. Response ok.": true
 				}
 			],
-			"time": "40",
-			"totalRequestTime": "40",
+			"time": "60",
+			"totalRequestTime": "60",
 			"iterationResults": {}
 		},
 		{
@@ -2197,7 +2231,7 @@
 				}
 			},
 			"times": [
-				"41"
+				"44"
 			],
 			"allTests": [
 				{
@@ -2205,8 +2239,8 @@
 					"Error message found in JSON response.": true
 				}
 			],
-			"time": "41",
-			"totalRequestTime": "41",
+			"time": "44",
+			"totalRequestTime": "44",
 			"iterationResults": {}
 		},
 		{
@@ -2222,21 +2256,36 @@
 					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
-			"tests": {},
-			"testPassFailCounts": {},
+			"tests": {
+				"Response 200. Response is correct.": true,
+				"The limit is set to 10.": true
+			},
+			"testPassFailCounts": {
+				"Response 200. Response is correct.": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The limit is set to 10.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
 			"times": [
-				"48"
+				"50"
 			],
 			"allTests": [
-				{}
+				{
+					"Response 200. Response is correct.": true,
+					"The limit is set to 10.": true
+				}
 			],
-			"time": "48",
-			"totalRequestTime": "48",
+			"time": "50",
+			"totalRequestTime": "50",
 			"iterationResults": {}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "c12ff10b-7722-4904-9c4f-e5dc7ff8e415",
+			"name": "Refresh_token",
+			"id": "75e96392-155e-4601-8254-37e042a5d1ed",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -2257,21 +2306,101 @@
 				}
 			},
 			"times": [
-				"50"
+				"54"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "54",
+			"totalRequestTime": "54",
 			"iterationResults": {}
 		},
 		{
 			"name": "Add_tracks_to_playlist",
 			"id": "cb37c71c-1bef-494a-8994-6126618a3fd6",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": {
+					"name": "Created",
+					"detail": "The request has been fulfilled and resulted in a new resource being created."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true,
+				"Snapshot has been generated ==> POST was delivered successfully!": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Snapshot has been generated ==> POST was delivered successfully!": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"125"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true,
+					"Snapshot has been generated ==> POST was delivered successfully!": true
+				}
+			],
+			"time": "125",
+			"totalRequestTime": "125",
+			"iterationResults": {}
+		},
+		{
+			"name": "Add_tracks_to_playlist-Negative-test",
+			"id": "8a683554-cc8e-4c01-a4f4-76c5f7203c66",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"Response is correct, status code 400": true,
+				"Incorrect track URI detected. Error has been thrown.": true
+			},
+			"testPassFailCounts": {
+				"Response is correct, status code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Incorrect track URI detected. Error has been thrown.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"44"
+			],
+			"allTests": [
+				{
+					"Response is correct, status code 400": true,
+					"Incorrect track URI detected. Error has been thrown.": true
+				}
+			],
+			"time": "44",
+			"totalRequestTime": "44",
+			"iterationResults": {}
+		},
+		{
+			"name": "Replace a playlist's tracks",
+			"id": "4be240c1-3c7b-43ae-9a75-2a1de3f62808",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 201,
@@ -2309,89 +2438,9 @@
 			"iterationResults": {}
 		},
 		{
-			"name": "Add_tracks_to_playlist-Negative-test",
-			"id": "8a683554-cc8e-4c01-a4f4-76c5f7203c66",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is correct, status code 400": true,
-				"Incorrect track URI detected. Error has been thrown.": true
-			},
-			"testPassFailCounts": {
-				"Response is correct, status code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Incorrect track URI detected. Error has been thrown.": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"41"
-			],
-			"allTests": [
-				{
-					"Response is correct, status code 400": true,
-					"Incorrect track URI detected. Error has been thrown.": true
-				}
-			],
-			"time": "41",
-			"totalRequestTime": "41",
-			"iterationResults": {}
-		},
-		{
-			"name": "Replace a playlist's tracks",
-			"id": "4be240c1-3c7b-43ae-9a75-2a1de3f62808",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 201,
-				"name": "Created",
-				"detail": {
-					"name": "Created",
-					"detail": "The request has been fulfilled and resulted in a new resource being created."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true,
-				"Snapshot has been generated ==> POST was delivered successfully!": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Snapshot has been generated ==> POST was delivered successfully!": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"65"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true,
-					"Snapshot has been generated ==> POST was delivered successfully!": true
-				}
-			],
-			"time": "65",
-			"totalRequestTime": "65",
-			"iterationResults": {}
-		},
-		{
 			"name": "Replace a playlist's tracks Negative_Test",
 			"id": "1dd8980c-0293-47c0-abee-d533a2d402eb",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 400,
@@ -2416,7 +2465,7 @@
 				}
 			},
 			"times": [
-				"39"
+				"43"
 			],
 			"allTests": [
 				{
@@ -2424,121 +2473,13 @@
 					"Incorrect track URI detected. Error has been thrown.": true
 				}
 			],
-			"time": "39",
-			"totalRequestTime": "39",
-			"iterationResults": {}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "dd6b8ef7-b969-42cf-a248-7c4bb4cbf707",
-			"url": "https://accounts.spotify.com/api/token",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok, status code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"50"
-			],
-			"allTests": [
-				{
-					"Response is ok, status code 200": true
-				}
-			],
-			"time": "50",
-			"totalRequestTime": "50",
-			"iterationResults": {}
-		},
-		{
-			"name": "Search for an item Positive-BVA_50_limit",
-			"id": "9dcd512f-a6e5-4e23-a069-2a52151d6696",
-			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=50",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 200": true
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"107"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 200": true
-				}
-			],
-			"time": "107",
-			"totalRequestTime": "107",
-			"iterationResults": {}
-		},
-		{
-			"name": "Search for an item Negative-BVA_51_limit",
-			"id": "093ab14e-8140-41a0-b7eb-c14391647ab0",
-			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=51",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
-				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
-				}
-			},
-			"tests": {
-				"Response is ok. Code 400": true,
-				"Response body contains the message Invalid limit.": true
-			},
-			"testPassFailCounts": {
-				"Response is ok. Code 400": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response body contains the message Invalid limit.": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				"38"
-			],
-			"allTests": [
-				{
-					"Response is ok. Code 400": true,
-					"Response body contains the message Invalid limit.": true
-				}
-			],
-			"time": "38",
-			"totalRequestTime": "38",
+			"time": "43",
+			"totalRequestTime": "43",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "913b7b8b-1c3d-4b8c-b235-07d0a30bd245",
+			"id": "84af30a8-bd9c-4144-9d17-f031fbc04029",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -2571,6 +2512,114 @@
 			"iterationResults": {}
 		},
 		{
+			"name": "Search for an item Positive-BVA_50_limit",
+			"id": "9dcd512f-a6e5-4e23-a069-2a52151d6696",
+			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=50",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"102"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 200": true
+				}
+			],
+			"time": "102",
+			"totalRequestTime": "102",
+			"iterationResults": {}
+		},
+		{
+			"name": "Search for an item Negative-BVA_51_limit",
+			"id": "093ab14e-8140-41a0-b7eb-c14391647ab0",
+			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=51",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"Response is ok. Code 400": true,
+				"Response body contains the message Invalid limit.": true
+			},
+			"testPassFailCounts": {
+				"Response is ok. Code 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body contains the message Invalid limit.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"42"
+			],
+			"allTests": [
+				{
+					"Response is ok. Code 400": true,
+					"Response body contains the message Invalid limit.": true
+				}
+			],
+			"time": "42",
+			"totalRequestTime": "42",
+			"iterationResults": {}
+		},
+		{
+			"name": "Refresh_token",
+			"id": "ffe18c90-a8e8-4f9b-b240-9941d1862e04",
+			"url": "https://accounts.spotify.com/api/token",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Response is ok, status code 200": true
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"47"
+			],
+			"allTests": [
+				{
+					"Response is ok, status code 200": true
+				}
+			],
+			"time": "47",
+			"totalRequestTime": "47",
+			"iterationResults": {}
+		},
+		{
 			"name": "Get audio analysis for a track",
 			"id": "b421c325-1818-4630-90c7-4b1558b02d98",
 			"url": "https://api.spotify.com/v1/audio-analysis/5hyb6e5o5dPm7wbUi5wlhb",
@@ -2598,7 +2647,7 @@
 				}
 			},
 			"times": [
-				"168"
+				"153"
 			],
 			"allTests": [
 				{
@@ -2606,8 +2655,8 @@
 					"Property is present": true
 				}
 			],
-			"time": "168",
-			"totalRequestTime": "168",
+			"time": "153",
+			"totalRequestTime": "153",
 			"iterationResults": {}
 		},
 		{
@@ -2638,7 +2687,7 @@
 				}
 			},
 			"times": [
-				"39"
+				"38"
 			],
 			"allTests": [
 				{
@@ -2646,8 +2695,8 @@
 					"Property is present": true
 				}
 			],
-			"time": "39",
-			"totalRequestTime": "39",
+			"time": "38",
+			"totalRequestTime": "38",
 			"iterationResults": {}
 		},
 		{
@@ -2678,7 +2727,7 @@
 				}
 			},
 			"times": [
-				"76"
+				"42"
 			],
 			"allTests": [
 				{
@@ -2686,13 +2735,13 @@
 					"Property is present": true
 				}
 			],
-			"time": "76",
-			"totalRequestTime": "76",
+			"time": "42",
+			"totalRequestTime": "42",
 			"iterationResults": {}
 		},
 		{
 			"name": "Refresh_token",
-			"id": "f3b6606c-2233-4b56-b652-4acf48213967",
+			"id": "45621733-c21e-435d-afb1-5c189af3bf9e",
 			"url": "https://accounts.spotify.com/api/token",
 			"totalTime": 0,
 			"responseCode": {
@@ -2713,15 +2762,15 @@
 				}
 			},
 			"times": [
-				"50"
+				"47"
 			],
 			"allTests": [
 				{
 					"Response is ok, status code 200": true
 				}
 			],
-			"time": "50",
-			"totalRequestTime": "50",
+			"time": "47",
+			"totalRequestTime": "47",
 			"iterationResults": {}
 		},
 		{
@@ -2752,7 +2801,7 @@
 				}
 			},
 			"times": [
-				"43"
+				"48"
 			],
 			"allTests": [
 				{
@@ -2760,8 +2809,8 @@
 					"The current user was shown!": true
 				}
 			],
-			"time": "43",
-			"totalRequestTime": "43",
+			"time": "48",
+			"totalRequestTime": "48",
 			"iterationResults": {}
 		},
 		{
@@ -2792,7 +2841,7 @@
 				}
 			},
 			"times": [
-				"53"
+				"45"
 			],
 			"allTests": [
 				{
@@ -2800,8 +2849,8 @@
 					"The user was shown!": true
 				}
 			],
-			"time": "53",
-			"totalRequestTime": "53",
+			"time": "45",
+			"totalRequestTime": "45",
 			"iterationResults": {}
 		},
 		{
@@ -2872,7 +2921,7 @@
 				}
 			},
 			"times": [
-				"39"
+				"35"
 			],
 			"allTests": [
 				{
@@ -2880,21 +2929,21 @@
 					"The current user was not shown!": true
 				}
 			],
-			"time": "39",
-			"totalRequestTime": "39",
+			"time": "35",
+			"totalRequestTime": "35",
 			"iterationResults": {}
 		}
 	],
-	"totalPass": 115,
-	"totalFail": 5,
-	"totalTime": 4155,
+	"totalPass": 123,
+	"totalFail": 0,
+	"totalTime": 4200,
 	"lifecycle": "done",
 	"requests": [
 		{
 			"name": "Refresh_token",
 			"id": "5fb36962-dc68-403e-80c8-f10335ec112f",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -2914,7 +2963,7 @@
 			"name": "Get an album",
 			"id": "3a1e8fc2-8544-4472-a139-6a271c0dd941",
 			"url": "https://api.spotify.com/v1/albums/0O82niJ0NpcptYRxogeEZu",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -2942,7 +2991,7 @@
 			"name": "Get an album's tracks",
 			"id": "53afffe7-2db1-4d5f-a497-c78564217840",
 			"url": "https://api.spotify.com/v1/albums/6R6nH5TVNEquzoNfqCPLaB/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -2970,7 +3019,7 @@
 			"name": "Get an album negative",
 			"id": "de8404ea-1b1c-4b97-aef4-b9377fa6db4f",
 			"url": "https://api.spotify.com/v1/albums/invalid",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -2990,7 +3039,7 @@
 			"name": "Get an album's tracks Negative",
 			"id": "4a238a1e-959e-4246-bf47-f15fd9e07c06",
 			"url": "https://api.spotify.com/v1/albums/785968/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3008,9 +3057,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "bb38cd4f-26a8-48a6-93c2-1b0a62961110",
+			"id": "fb8aee9a-41ff-4ea4-9f94-6acb819e56b8",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3030,7 +3079,7 @@
 			"name": "Get an Artist's Albums",
 			"id": "00c7e47d-5b6f-4617-a079-7542f0e290ef",
 			"url": "https://api.spotify.com/v1/artists/6wWVKhxIU2cEi0K81v7HvP/albums",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3054,7 +3103,7 @@
 			"name": "Get an Artist's Albums Negative",
 			"id": "d4b86c29-7594-44f7-9c94-48a6b7e91173",
 			"url": "https://api.spotify.com/v1/artists/1234abc/albums",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3076,9 +3125,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "93daf91d-f8ef-4907-85a4-8893ffdf8244",
+			"id": "7ab94ed2-b24a-4bd1-b1f0-af6fc7b6b4f4",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3098,7 +3147,7 @@
 			"name": "Get a category",
 			"id": "d0cb3f46-abeb-4ea5-b17d-3835dcd4b184",
 			"url": "https://api.spotify.com/v1/browse/categories/party",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3122,7 +3171,7 @@
 			"name": "Get a category negative",
 			"id": "3225e6c6-c2fc-404d-8268-a616943115db",
 			"url": "https://api.spotify.com/v1/browse/categories/1234",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -3144,9 +3193,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "125f737b-c8e6-4d7f-b420-3906dd419ce0",
+			"id": "b50df620-1366-4632-be5e-d93b162600f8",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3166,7 +3215,7 @@
 			"name": "Get the user's followed artists",
 			"id": "b4671e50-615d-4da6-be41-f067d74a8007",
 			"url": "https://api.spotify.com/v1/me/following?type=artist",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3190,7 +3239,7 @@
 			"name": "Get the user's followed artists negative",
 			"id": "6b957f2e-f04c-4847-aaa9-97e0d09b7283",
 			"url": "https://api.spotify.com/v1/me/following",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3212,9 +3261,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "6bb472a8-8ed1-40e2-98db-f7115faee89d",
+			"id": "4ace7fda-4867-4323-9ad9-1b5a1b29d0c1",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3234,7 +3283,7 @@
 			"name": "Follow artists",
 			"id": "5645a535-d93d-4549-afcc-285804ddda14",
 			"url": "https://api.spotify.com/v1/me/following?type=artist&ids=3hE8S8ohRErocpkY7uJW4a,6wWVKhxIU2cEi0K81v7HvP",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 204,
 				"name": "No Content",
@@ -3254,7 +3303,7 @@
 			"name": "Check if current user follows users",
 			"id": "ba80be11-ac2e-4e06-b0aa-dc8a4f1d773e",
 			"url": "https://api.spotify.com/v1/me/following/contains?type=user&ids=winterlord22",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3282,7 +3331,7 @@
 			"name": "Unfolow an artist",
 			"id": "5a4eef80-44ae-4215-8f13-a41af0cd7fd5",
 			"url": "https://api.spotify.com/v1/me/following?type=artist&ids=6wWVKhxIU2cEi0K81v7HvP",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 204,
 				"name": "No Content",
@@ -3302,7 +3351,7 @@
 			"name": "Follow artists negative",
 			"id": "1b79b8ee-d2ea-429a-b24b-12fd76948155",
 			"url": "https://api.spotify.com/v1/me/following?type=artist&ids=nvalidi",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3324,9 +3373,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "8877119b-412a-454f-8787-43b46a0dcb64",
+			"id": "b49bb64d-477c-4395-8b92-f8889572e6c6",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3346,7 +3395,7 @@
 			"name": "Get top artists",
 			"id": "73906aa9-d8a7-420b-9fa2-470b8537c927",
 			"url": "https://api.spotify.com/v1/me/top/artists",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3370,7 +3419,7 @@
 			"name": "Get top tracks",
 			"id": "caff5977-b348-4910-84e3-e21ee50236ed",
 			"url": "https://api.spotify.com/v1/me/top/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3394,7 +3443,7 @@
 			"name": "Get top negative",
 			"id": "fe4d461b-0b53-4e76-a3e9-3d21de61dbb7",
 			"url": "https://api.spotify.com/v1/me/top",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -3412,9 +3461,29 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "5cbf52cf-4dd2-45a7-95ce-c22c52b92e00",
+			"id": "8379bda8-e37c-4d14-8c54-f27d46ca0265",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Get recent played tracks",
+			"id": "2eb157cf-9e45-4ab5-9909-d9dd3ffa300d",
+			"url": "https://api.spotify.com/v1/me/player/recently-played",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3434,7 +3503,7 @@
 			"name": "Set repeat mode on user's playback",
 			"id": "efcac18b-f9c3-49db-9dc8-e837f6d4ccc0",
 			"url": "https://api.spotify.com/v1/me/player/repeat",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden",
@@ -3458,7 +3527,7 @@
 			"name": "Set repeat mode on user's playback negative",
 			"id": "ae043be8-8dd6-47c7-9c71-0fbcbf04e7b6",
 			"url": "https://api.spotify.com/v1/me/player/123",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -3476,9 +3545,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "a2956f4b-8fab-45d1-bddb-318f0237bbd7",
+			"id": "b35aaf63-b311-4081-be74-ade13fcd6d5b",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3498,7 +3567,7 @@
 			"name": "Create a playlist",
 			"id": "c40453cf-98b4-4aa1-bc54-2baa5455a4d8",
 			"url": "https://api.spotify.com/v1/users/dqq9tx6bjmkcj92igedo2j19n/playlists/",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 201,
 				"name": "Created",
@@ -3521,8 +3590,8 @@
 		{
 			"name": "Add tracks to a playlist",
 			"id": "75369d08-4838-4feb-80fa-122a9823be0f",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 201,
 				"name": "Created",
@@ -3545,8 +3614,8 @@
 		{
 			"name": "Remove tracks from a playlist",
 			"id": "69f37a8d-4061-4cc6-8afa-a1c1878de30f",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3569,8 +3638,8 @@
 		{
 			"name": "Change a playlists name and description",
 			"id": "686df7a7-4748-4558-92a1-4e9c6d8afb40",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3589,8 +3658,8 @@
 		{
 			"name": "Add tracks to a playlist negative",
 			"id": "bf13215a-a831-4d50-bd7a-6929cb767308",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3613,8 +3682,8 @@
 		{
 			"name": "Remove tracks from a playlist negative",
 			"id": "1845ba63-da5a-4439-997e-5ee3b3e8cc45",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3636,9 +3705,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "d94e5aba-b76b-4652-ab8d-f4715b563069",
+			"id": "6c9c980d-bf3f-4752-ac8d-a336964257d0",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3657,8 +3726,8 @@
 		{
 			"name": "Get a playlist's cover image",
 			"id": "eef124da-8527-4459-acc6-3f3e39767b6a",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/images",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/images",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3682,7 +3751,7 @@
 			"name": "Get a playlist's cover image negative",
 			"id": "fa510d41-6c21-4f3a-b7ba-b2be80dfea8b",
 			"url": "https://api.spotify.com/v1/playlists/wrong/images",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 502,
 				"name": "Bad Gateway",
@@ -3703,10 +3772,10 @@
 			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "8375fb9e-939a-47ec-9094-6bb469ffb2a3",
+			"name": "Refresh_token",
+			"id": "916aaea9-5ae0-4eee-bf4f-d8104f8a2cc3",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3726,7 +3795,7 @@
 			"name": "Artist by artist ID_Negative",
 			"id": "f371a3da-7ec2-4f69-8b27-14b8d3789b53",
 			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3749,20 +3818,20 @@
 		{
 			"name": "Get an artist's related artists Positive",
 			"id": "8d1beed0-3ce4-4205-9486-01929fd235be",
-			"url": "https://api.spotify.com/v1/artists/{{artist_id}}/related-artists",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/artists/3hE8S8ohRErocpkY7uJW4a/related-artists",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
+				"code": 200,
+				"name": "OK",
 				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
 			"testPassFailCounts": {
 				"Response is ok. Code 200": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
@@ -3770,7 +3839,7 @@
 			"name": "Get an artist's related artists Negative",
 			"id": "87a7a470-3f9b-4bef-958a-8f2575fc0366",
 			"url": "https://api.spotify.com/v1/artists/4PoYwGOztIrPpBfRIlMSx/related-artists",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3793,28 +3862,28 @@
 		{
 			"name": "Artist by artist ID_Positive",
 			"id": "938bbe61-9f87-4e10-912d-1f52851dd851",
-			"url": "https://api.spotify.com/v1/artists/{{artist_id}}?=",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/artists/3hE8S8ohRErocpkY7uJW4a?=",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
+				"code": 200,
+				"name": "OK",
 				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
 			"testPassFailCounts": {
 				"Response is ok. Code 200": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "643ed775-8d4f-4e66-b89b-78f208b0d22f",
+			"name": "Refresh_token",
+			"id": "3b95704d-f3d5-4b41-9cb0-ff4ea4e2e48d",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3834,27 +3903,7 @@
 			"name": "Get_Recomendations_Retesting",
 			"id": "48d3a3f7-690a-422e-8030-8e1885f82c4f",
 			"url": "https://api.spotify.com/v1/recommendations?limit=100&seed_artists=7fWgqc4HJi3pcHhK8hKg2p&market=US",
-			"time": "2019-10-14T13:43:34.992Z",
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": {
-					"name": "OK",
-					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-				}
-			},
-			"testPassFailCounts": {
-				"Response is ok, status code 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			}
-		},
-		{
-			"name": "Refresh_token Copy",
-			"id": "c8df040a-cd4f-463b-b4f0-8414c3571ea8",
-			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3874,7 +3923,7 @@
 			"name": "Get a list of new releases_Positive_BVA_50_limit",
 			"id": "20a8b077-5d55-4f8b-8a60-fbbeba281cfd",
 			"url": "https://api.spotify.com/v1/browse/categories?country=RO&limit=50",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3898,7 +3947,7 @@
 			"name": "Get a list of new releases_Negative_BVA_51_limit",
 			"id": "d947139d-5768-4109-a8df-2026e1385753",
 			"url": "https://api.spotify.com/v1/browse/categories?country=RO&limit=51",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3922,7 +3971,7 @@
 			"name": "Get a list of categories_Positive_BVA_50_limit Copy",
 			"id": "e08588b2-b6ec-401f-806b-b6f11d1b354b",
 			"url": "https://api.spotify.com/v1/browse/categories?country=RO&locale=ro_EN&limit=50",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3942,7 +3991,7 @@
 			"name": "Get a list of categories Negative-BVA_Above_50_Limit",
 			"id": "f83de355-7bc6-4400-9afa-9a9606ea0af2",
 			"url": "https://api.spotify.com/v1/browse/categories?country=RO&locale=ro_EN&limit=51",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -3963,10 +4012,30 @@
 			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "651b18fa-2bb9-4455-8350-eb020228adae",
+			"name": "Refresh_token",
+			"id": "57166496-d190-40aa-8e39-16c1a77448cc",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response is ok, status code 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Save an album for the current user",
+			"id": "53b1882b-575a-4c3d-a0bc-7842ff963254",
+			"url": "https://api.spotify.com/v1/me/albums?ids=4acB71ZhsfYGdTdqdbpzLK",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -3986,7 +4055,7 @@
 			"name": "Check user's saved albums",
 			"id": "828de01b-0422-49f5-8b8c-909f54252e81",
 			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=4acB71ZhsfYGdTdqdbpzLK,1JifWi3bCvGr7MsdHYumjD",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4001,8 +4070,8 @@
 					"fail": 0
 				},
 				"Correct assertion. First album is present the second is not.": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
@@ -4010,7 +4079,7 @@
 			"name": "Check user's saved albums Negative_test",
 			"id": "4d2c70a8-6695-457f-8bf8-b77c8a7577d5",
 			"url": "https://api.spotify.com/v1/me/albums/contains?contains=&ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4034,7 +4103,7 @@
 			"name": "Remove Albums fro Current User",
 			"id": "2e76dc5c-eece-44e1-bed8-2919d72703dd",
 			"url": "https://api.spotify.com/v1/me/albums?ids=1SL2IdaCrXDtv695Px6AXR",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4054,7 +4123,7 @@
 			"name": "Remove Albums fro Current User Negative_Test",
 			"id": "e87ecf82-c477-49bf-a7e8-0b8dff9434fc",
 			"url": "https://api.spotify.com/v1/me/albums?ids=1JifWi3bCvGr7MsdHYumj,4acB71ZhsfYGdTdqdbpzL",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4075,10 +4144,10 @@
 			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "acbe134a-51ff-416d-b3ee-d5652c8bc85b",
+			"name": "Refresh_token",
+			"id": "25b57009-5b73-4545-8f14-ba17c712e0a4",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4097,20 +4166,20 @@
 		{
 			"name": "Save Tracks for User Positive test",
 			"id": "e199775b-83e8-459b-acc5-5484d10b2de8",
-			"url": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks}}",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/me/tracks?ids=5hyb6e5o5dPm7wbUi5wlhb,0lqfBvf1Gqmmt3l5Qeirlm",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
+				"code": 200,
+				"name": "OK",
 				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
 			"testPassFailCounts": {
 				"Response 200. Response ok.": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
@@ -4118,7 +4187,7 @@
 			"name": "Save Tracks for User Negative test",
 			"id": "9b768b8a-0766-4134-a374-e8aecba15176",
 			"url": "https://api.spotify.com/v1/me/tracks?ids={{to_add_tracks_negative}}",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4141,20 +4210,20 @@
 		{
 			"name": "Save Albums for Current User Positive test",
 			"id": "612b46eb-4960-4590-8dae-c53aa8ae0d75",
-			"url": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids}}",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/me/albums?ids=6R6nH5TVNEquzoNfqCPLaB,0O82niJ0NpcptYRxogeEZu",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request",
+				"code": 200,
+				"name": "OK",
 				"detail": {
-					"name": "Bad Request",
-					"detail": "The request cannot be fulfilled due to bad syntax."
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
 			"testPassFailCounts": {
 				"Response 200. Response ok.": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
@@ -4162,7 +4231,7 @@
 			"name": "Save Albums for Current Negative test",
 			"id": "ee808df8-9cde-4b44-b200-d99db2b4d71d",
 			"url": "https://api.spotify.com/v1/me/albums?ids={{save_album_ids_negative}}",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4186,7 +4255,7 @@
 			"name": "User's Saved tracks",
 			"id": "e6b6ad2b-8992-4df4-bae8-8e722c3c3fe9",
 			"url": "https://api.spotify.com/v1/me/tracks?limit=10",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4195,13 +4264,22 @@
 					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
 				}
 			},
-			"testPassFailCounts": {}
+			"testPassFailCounts": {
+				"Response 200. Response is correct.": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The limit is set to 10.": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "c12ff10b-7722-4904-9c4f-e5dc7ff8e415",
+			"name": "Refresh_token",
+			"id": "75e96392-155e-4601-8254-37e042a5d1ed",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4220,8 +4298,8 @@
 		{
 			"name": "Add_tracks_to_playlist",
 			"id": "cb37c71c-1bef-494a-8994-6126618a3fd6",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 201,
 				"name": "Created",
@@ -4244,8 +4322,8 @@
 		{
 			"name": "Add_tracks_to_playlist-Negative-test",
 			"id": "8a683554-cc8e-4c01-a4f4-76c5f7203c66",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4268,8 +4346,8 @@
 		{
 			"name": "Replace a playlist's tracks",
 			"id": "4be240c1-3c7b-43ae-9a75-2a1de3f62808",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 201,
 				"name": "Created",
@@ -4292,8 +4370,8 @@
 		{
 			"name": "Replace a playlist's tracks Negative_Test",
 			"id": "1dd8980c-0293-47c0-abee-d533a2d402eb",
-			"url": "https://api.spotify.com/v1/playlists/6DLLm97RSG6KnbKggE2yuS/tracks",
-			"time": "2019-10-14T13:43:34.992Z",
+			"url": "https://api.spotify.com/v1/playlists/6LqFpWHSsAdMh6totpD3fi/tracks",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4314,10 +4392,10 @@
 			}
 		},
 		{
-			"name": "Refresh_token Copy",
-			"id": "dd6b8ef7-b969-42cf-a248-7c4bb4cbf707",
+			"name": "Refresh_token",
+			"id": "84af30a8-bd9c-4144-9d17-f031fbc04029",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4337,7 +4415,7 @@
 			"name": "Search for an item Positive-BVA_50_limit",
 			"id": "9dcd512f-a6e5-4e23-a069-2a52151d6696",
 			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=50",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4357,7 +4435,7 @@
 			"name": "Search for an item Negative-BVA_51_limit",
 			"id": "093ab14e-8140-41a0-b7eb-c14391647ab0",
 			"url": "https://api.spotify.com/v1/search?q=joe satriani&type=album&market=RO&limit=51",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4379,9 +4457,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "913b7b8b-1c3d-4b8c-b235-07d0a30bd245",
+			"id": "ffe18c90-a8e8-4f9b-b240-9941d1862e04",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4401,7 +4479,7 @@
 			"name": "Get audio analysis for a track",
 			"id": "b421c325-1818-4630-90c7-4b1558b02d98",
 			"url": "https://api.spotify.com/v1/audio-analysis/5hyb6e5o5dPm7wbUi5wlhb",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4425,7 +4503,7 @@
 			"name": "Get audio features for a track",
 			"id": "adf184e9-c91f-4e6e-8619-2a6a35030c75",
 			"url": "https://api.spotify.com/v1/audio-features/0lqfBvf1Gqmmt3l5Qeirlm",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4449,7 +4527,7 @@
 			"name": "Get a track negative",
 			"id": "12f9c584-8647-46d5-a0c2-8f113c07ddef",
 			"url": "https://api.spotify.com/v1/tracks/invalid",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
@@ -4471,9 +4549,9 @@
 		},
 		{
 			"name": "Refresh_token",
-			"id": "f3b6606c-2233-4b56-b652-4acf48213967",
+			"id": "45621733-c21e-435d-afb1-5c189af3bf9e",
 			"url": "https://accounts.spotify.com/api/token",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4493,7 +4571,7 @@
 			"name": "Get current user's profile",
 			"id": "ed0a5a5c-01f1-4380-80cd-e54dd991c974",
 			"url": "https://api.spotify.com/v1/me",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4517,7 +4595,7 @@
 			"name": "Get a user's profile",
 			"id": "bb6888d4-bb4d-46f8-a28d-d31e848135a4",
 			"url": "https://api.spotify.com/v1/users/winterlord22",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -4541,7 +4619,7 @@
 			"name": "Get a user's profile negative",
 			"id": "5c7cf4c9-31e2-4d21-b6ef-6628958601f9",
 			"url": "https://api.spotify.com/v1/users/winterlord22",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized",
@@ -4565,7 +4643,7 @@
 			"name": "Get current user's profile negative",
 			"id": "dd3938b6-8bc4-4adb-8916-8eaa438e4ad4",
 			"url": "https://api.spotify.com/v1/me",
-			"time": "2019-10-14T13:43:34.992Z",
+			"time": "2019-10-15T10:57:16.222Z",
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized",
