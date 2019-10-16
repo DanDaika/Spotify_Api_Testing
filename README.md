@@ -1,6 +1,6 @@
 Spotify_Api_Testing
 ===================
- - Test Spotify API endpoints, using POSTMAN.
+ - Test Spotify API endpoints, using POSTMAN
  - POSTMAN for WINDOWS v7.9.0
 
 Version 1.0
@@ -13,7 +13,7 @@ SETUP FOR NEW TESTER
 --------------------
  + Steps on how to obtain the "client_id" and "secret_id" can be found here: https://developer.spotify.com/documentation/general/guides/app-settings/
  + A new non-commercial application needs to be created within your spotify account for you to recieve both client_id and your client_secret. Both of these will be important later on for you to obtain your authentification
-and refresher token.
+and refresher token
 1. Create a new Spotify User account at the following link: https://www.spotify.com
 2. Using the created account login on the Dashboard : https://developer.spotify.com/dashboard
 3. Create a client ID in order to get your Client ID and Client Secret
@@ -31,9 +31,9 @@ SETUP TO OBTAIN THE CODE
 	 - {{redirect_uri}} 		**with**	 https://www.getpostman.com/oauth2/callback
 	 - {{state}} 			**with**	 the country
 	 - {{scope}} 			**with**	 the scopes for which you need access
- + NOTE: With the help of this callback URI, you'll be able to retrieve you're authorization code and refresher token. Of course you can use other URIs as well. Just make sure you update the settings for the API you created earlier and the environment variable.
- + NOTE: At this point, no UI test automation is in place, so you'll have to manually accept the authorization request.
- + NOTE: Scopes are very important when retreiving your authorization code. Scopes will define what you can and what you cannot do later on and will affect the running of test suites.
+ + NOTE: With the help of this callback URI, you'll be able to retrieve you're authorization code and refresher token. Of course you can use other URIs as well. Just make sure you update the settings for the API you created earlier and the environment variable
+ + NOTE: At this point, no UI test automation is in place, so you'll have to manually accept the authorization request
+ + NOTE: Scopes are very important when retreiving your authorization code. Scopes will define what you can and what you cannot do later on and will affect the running of test suites
  + To be able to run all the created test cases please provide all the scopes available: 
 		*playlist-read-collaborative playlist-modify-private playlist-modify-public 
 		playlist-read-private user-modify-playback-state user-read-currently-playing 
@@ -41,7 +41,7 @@ SETUP TO OBTAIN THE CODE
 		user-library-read user-follow-modify user-follow-read user-read-recently-played 
 		user-top-read streaming app-remote-control*
  + You can find a list of scopes in this link: https://developer.spotify.com/documentation/general/guides/scopes
- + After granting access to your account you will get the CODE in the returned URL. Further on you can exchange this CODE for the TOKEN and REFRESH_TOKEN.
+ + After granting access to your account you will get the CODE in the returned URL. Further on you can exchange this CODE for the TOKEN and REFRESH_TOKEN
  
 ***With POSTMAN***
 
@@ -60,7 +60,7 @@ SETUP TO OBTAIN THE CODE
 8. A web page with a request to allow access to your account should be available. For the tests to run you should grant access
 9. After granting access, a new URL is generated which contains the requested CODE. Save this CODE in POSTMAN Spotify_API_Template environment, under the code alias
  + NOTE: This manual granting needs to be performed once for any scope. You can grant access for more scopes at once
- + NOTE: Once you manually granted access to a scope/scopes you can use POSTMAN script to generate a new CODE for the same scope/scopes. The code variable from the Spotify_API_Template environment will be updated.
+ + NOTE: Once you manually granted access to a scope/scopes you can use POSTMAN script to generate a new CODE for the same scope/scopes. The code variable from the Spotify_API_Template environment will be updated
  + NOTE: You can use the CODE only once, to exchange it for the TOKEN and REFRESH_TOKEN
 	
 SETUP TO OBTAIN TOKEN AND REFRESH_TOKEN
@@ -114,11 +114,11 @@ Explanation of environment variables
 SETUP TO RUN TESTS
 ------------------
 1. From Tests folder get the desired POSTMAN collection
-2. Start POSTMAN and run once the following collection 'Get the CODE, the TOKEN and the REFRESH TOKEN'.Make sure you have the 'Spotify_API_Template' environment and that you have all the variables from the environment filled in.
-If you have missing variables please read the SETUP steps above.
+2. Start POSTMAN and run once the following collection 'Get the CODE, the TOKEN and the REFRESH TOKEN'.Make sure you have the 'Spotify_API_Template' environment and that you have all the variables from the environment filled in
+If you have missing variables please read the SETUP steps above
 3. Import the collection you want to test
-4. Run the collection you want to test.
-5. When using the POSTMAN Runner make sure you have the following settings:
-		- Select the correct environment
-		- 'Keep variables values' checked
-		- 'Save cookies after collection run' checked 
+4. Run the collection you want to test
+5. When using the POSTMAN Runner make sure you have the following settings in it:
+	- Select the correct environment
+	- 'Keep variables values' checked
+	- 'Save cookies after collection run' checked 
